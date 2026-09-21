@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منيو الرواد آيس كريم | Al-Rawad Ice Cream Menu</title>
+    <title>الرواد - المشروبات الساخنة</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -13,7 +13,6 @@
             --text-muted: #7d8b96;
             --accent-blue: #6b8ea7;
             --accent-light: #e3ebf0;
-            --price-tag: #88a4b8;
             --shadow: 0 8px 20px rgba(0,0,0,0.06);
             --radius: 18px;
         }
@@ -33,7 +32,6 @@
             min-height: 100vh;
         }
 
-        /* Header & Banner */
         header {
             background: linear-gradient(135deg, #f7e3b5 0%, #fceecb 100%);
             padding: 25px 20px 15px;
@@ -44,7 +42,6 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            backdrop-filter: blur(10px);
         }
 
         .brand-logo {
@@ -70,21 +67,20 @@
         p.subtitle {
             color: var(--text-muted);
             font-size: 0.88rem;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         .item-count-badge {
             background: var(--accent-blue);
             color: white;
             font-size: 0.8rem;
-            padding: 4px 12px;
+            padding: 4px 14px;
             border-radius: 15px;
             display: inline-block;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             font-weight: 700;
         }
 
-        /* Search Bar */
         .search-box {
             position: relative;
             max-width: 450px;
@@ -116,55 +112,19 @@
             font-size: 1.1rem;
         }
 
-        /* Category Nav */
-        .categories-nav {
-            display: flex;
-            gap: 8px;
-            overflow-x: auto;
-            padding: 15px 20px;
-            scrollbar-width: none;
-        }
-
-        .categories-nav::-webkit-scrollbar {
-            display: none;
-        }
-
-        .cat-btn {
-            background: white;
-            color: var(--text-dark);
-            border: none;
-            padding: 10px 16px;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 0.85rem;
-            white-space: nowrap;
-            cursor: pointer;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            transition: all 0.25s ease;
-        }
-
-        .cat-btn.active, .cat-btn:hover {
-            background: var(--accent-blue);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* Container & Sections */
         .container {
             max-width: 600px;
             margin: 0 auto;
-            padding: 10px 15px;
+            padding: 20px 15px;
         }
 
         .section-title {
             color: var(--accent-blue);
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 800;
             text-align: center;
-            margin: 25px 0 15px;
+            margin: 10px 0 20px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -175,10 +135,9 @@
             content: '';
             flex: 1;
             height: 2px;
-            background: rgba(107, 142, 167, 0.2);
+            background: rgba(107, 142, 167, 0.25);
         }
 
-        /* Grid Layout */
         .grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -197,7 +156,7 @@
             padding: 12px 8px;
             text-align: center;
             box-shadow: var(--shadow);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transition: transform 0.2s ease;
             cursor: pointer;
             display: flex;
             flex-direction: column;
@@ -211,7 +170,7 @@
 
         .card-img-wrap {
             width: 100%;
-            height: 90px;
+            height: 95px;
             border-radius: 12px;
             overflow: hidden;
             margin-bottom: 8px;
@@ -225,7 +184,7 @@
         }
 
         .card-title {
-            font-size: 0.82rem;
+            font-size: 0.85rem;
             font-weight: 700;
             color: var(--text-dark);
             margin-bottom: 6px;
@@ -244,15 +203,13 @@
             padding: 4px 10px;
             border-radius: 12px;
             display: inline-block;
-            width: fit-content;
         }
 
-        /* Banners */
         .banner-card {
             background: white;
             border-radius: var(--radius);
-            padding: 15px 20px;
-            margin: 20px 0;
+            padding: 16px 20px;
+            margin-top: 25px;
             box-shadow: var(--shadow);
             border: 2px dashed var(--accent-blue);
         }
@@ -273,7 +230,7 @@
         .banner-price {
             background: var(--accent-blue);
             color: white;
-            padding: 4px 10px;
+            padding: 4px 12px;
             border-radius: 10px;
             font-weight: 800;
             font-size: 0.85rem;
@@ -281,11 +238,10 @@
 
         .banner-desc {
             color: var(--text-muted);
-            font-size: 0.82rem;
+            font-size: 0.85rem;
             line-height: 1.4;
         }
 
-        /* Modal Popup */
         .modal {
             display: none;
             position: fixed;
@@ -295,12 +251,11 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(4px);
         }
 
         .modal.active {
             display: flex;
-            animation: fadeIn 0.2s ease;
         }
 
         .modal-content {
@@ -345,12 +300,6 @@
             font-size: 1.1rem;
             font-weight: 800;
             color: var(--accent-blue);
-            margin-bottom: 10px;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
         }
 
         footer {
@@ -358,42 +307,39 @@
             padding: 20px;
             color: var(--text-muted);
             font-size: 0.85rem;
-            margin-top: 30px;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="brand-logo">🍦</div>
-        <h1>الرواد آيس كريم</h1>
-        <p class="subtitle">Al-Rawad Ice Cream & Desserts</p>
-        <div class="item-count-badge">القائمة الكاملة: 51 صنفاً</div>
+        <div class="brand-logo">☕</div>
+        <h1>الرواد - المشروبات الساخنة</h1>
+        <p class="subtitle">Coffee Classics & Hot Drinks</p>
+        <div class="item-count-badge">المشروبات الساخنة: 17 صنفاً</div>
 
         <div class="search-box">
             <span class="search-icon">🔍</span>
-            <input type="text" id="searchInput" placeholder="ابحث عن مشروب أو حلوى..." onkeyup="searchMenu()">
+            <input type="text" id="searchInput" placeholder="ابحث عن مشروب ساخن..." onkeyup="searchMenu()">
         </div>
     </header>
 
-    <nav class="categories-nav">
-        <button class="cat-btn active" onclick="filterCategory('all', this)">الكل (51)</button>
-        <button class="cat-btn" onclick="filterCategory('desserts', this)">الحلويات (9)</button>
-        <button class="cat-btn" onclick="filterCategory('coffee', this)">القهوة الساخنة (17)</button>
-        <button class="cat-btn" onclick="filterCategory('iced-coffee', this)">القهوة الباردة (6)</button>
-        <button class="cat-btn" onclick="filterCategory('juices', this)">العصائر (4)</button>
-        <button class="cat-btn" onclick="filterCategory('milkshakes', this)">الميلك شيك (4)</button>
-        <button class="cat-btn" onclick="filterCategory('smoothies', this)">السموذي (4)</button>
-        <button class="cat-btn" onclick="filterCategory('refreshing', this)">المشروبات المنعشة (2)</button>
-        <button class="cat-btn" onclick="filterCategory('frappuccino', this)">الفرابوتشينو (1)</button>
-        <button class="cat-btn" onclick="filterCategory('iced-teas', this)">الشاي البارد (4)</button>
-    </nav>
+    <div class="container">
+        <div class="section-title">COFFEE CLASSICS</div>
+        <div class="grid" id="gridContainer">
+            <!-- Items rendered by JS -->
+        </div>
 
-    <div class="container" id="menuContainer">
-        <!-- Content inserted dynamically -->
+        <div class="banner-card">
+            <div class="banner-header">
+                <div class="banner-title">Add-Ons (الإضافات) ☕</div>
+                <div class="banner-price">0.75 JD</div>
+            </div>
+            <div class="banner-desc">Extra Shot, Extra Milk, Alternative Milk, Flavor, Honey, Whipped Cream</div>
+        </div>
     </div>
 
-    <!-- Popup Modal -->
     <div class="modal" id="itemModal">
         <div class="modal-content">
             <button class="modal-close" onclick="closeModal()">✕</button>
@@ -404,170 +350,52 @@
     </div>
 
     <footer>
-        <p>© الرواد آيس كريم - جميع الحقوق محفوظة</p>
+        <p>© الرواد آيس كريم وكافيه - جميع الحقوق محفوظة</p>
     </footer>
 
     <script>
-        const menuData = [
-            // 1. DESSERTS (الحلويات - صور حلويات حقيقية مطابقة)
-            { id: 1, category: 'desserts', title: 'Waffle', price: '3.50 JD', img: 'https://images.unsplash.com/photo-1562376552-0d160a2f238d?w=400&auto=format&fit=crop' },
-            { id: 2, category: 'desserts', title: 'Roll', price: '3.00 JD', img: 'https://images.unsplash.com/photo-1519869325930-281384150729?w=400&auto=format&fit=crop' },
-            { id: 3, category: 'desserts', title: 'Brownie', price: '3.00 JD', img: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400&auto=format&fit=crop' },
-            { id: 4, category: 'desserts', title: 'Crepe', price: '3.50 JD', img: 'https://images.unsplash.com/photo-1519676867240-f03562e64548?w=400&auto=format&fit=crop' },
-            { id: 5, category: 'desserts', title: 'Cookies', price: '2.50 JD', img: 'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=400&auto=format&fit=crop' },
-            { id: 6, category: 'desserts', title: 'Rawad Dip', price: '3.75 JD', img: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&auto=format&fit=crop' },
-            { id: 7, category: 'desserts', title: 'Chimney Cake', price: '3.50 JD', img: 'https://images.unsplash.com/photo-1587314168485-3236d6710814?w=400&auto=format&fit=crop' },
-            { id: 8, category: 'desserts', title: 'Cake Slice', price: '2.50 JD', img: 'https://images.unsplash.com/photo-1535141192574-5d4897c13136?w=400&auto=format&fit=crop' },
-            { id: 9, category: 'desserts', title: 'Ice Cream Chips', price: '3.50 JD', img: 'https://images.unsplash.com/photo-1570197788417-0e82375c9371?w=400&auto=format&fit=crop' },
-
-            // 2. COFFEE CLASSICS (القهوة الكلاسيكية الساخنة)
-            { id: 10, category: 'coffee', title: 'Espresso', price: '2.00 JD', img: 'https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=400&auto=format&fit=crop' },
-            { id: 11, category: 'coffee', title: 'Americano', price: '2.00 JD', img: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400&auto=format&fit=crop' },
-            { id: 12, category: 'coffee', title: 'Red Eye', price: '2.50 JD', img: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400&auto=format&fit=crop' },
-            { id: 13, category: 'coffee', title: 'Cortado', price: '2.50 JD', img: 'https://images.unsplash.com/photo-1534778101976-62847782c213?w=400&auto=format&fit=crop' },
-            { id: 14, category: 'coffee', title: 'Cappuccino', price: '3.00 JD', img: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400&auto=format&fit=crop' },
-            { id: 15, category: 'coffee', title: 'White Mocha', price: '3.25 JD', img: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?w=400&auto=format&fit=crop' },
-            { id: 16, category: 'coffee', title: 'Caramel Macchiato', price: '3.50 JD', img: 'https://images.unsplash.com/photo-1485808191679-5f86510681a2?w=400&auto=format&fit=crop' },
-            { id: 17, category: 'coffee', title: 'Spanish Latte', price: '3.50 JD', img: 'https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=400&auto=format&fit=crop' },
-            { id: 18, category: 'coffee', title: 'Hot Chocolate', price: '3.25 JD', img: 'https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=400&auto=format&fit=crop' },
-            { id: 19, category: 'coffee', title: 'Tea', price: '2.00 JD', img: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=400&auto=format&fit=crop' },
-            { id: 20, category: 'coffee', title: 'Espresso Macchiato', price: '2.50 JD', img: 'https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=400&auto=format&fit=crop' },
-            { id: 21, category: 'coffee', title: 'Dark Mocha', price: '3.25 JD', img: 'https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?w=400&auto=format&fit=crop' },
-            { id: 22, category: 'coffee', title: 'Herbal Tea', price: '2.00 JD', img: 'https://images.unsplash.com/photo-1597481499750-3e6b22637e12?w=400&auto=format&fit=crop' },
-            { id: 23, category: 'coffee', title: 'Caffe Latte', price: '3.00 JD', img: 'https://images.unsplash.com/photo-1534778101976-62847782c213?w=400&auto=format&fit=crop' },
-            { id: 24, category: 'coffee', title: 'Coffee Day', price: '1.50 JD', img: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&auto=format&fit=crop' },
-            { id: 25, category: 'coffee', title: 'Turkish Coffee', price: '2.00 JD', img: 'https://images.unsplash.com/photo-1588612165039-3f0f74519969?w=400&auto=format&fit=crop' },
-            { id: 26, category: 'coffee', title: 'Flat White', price: '2.75 JD', img: 'https://images.unsplash.com/photo-1577968897966-3d4325b36b61?w=400&auto=format&fit=crop' },
-
-            // 3. JUICES (العصائر الطبيعية)
-            { id: 27, category: 'juices', title: 'Orange Juice', price: '2.50 JD', img: 'https://images.unsplash.com/photo-1613478223719-2ab802602423?w=400&auto=format&fit=crop' },
-            { id: 28, category: 'juices', title: 'Strawberry Juice', price: '2.50 JD', img: 'https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=400&auto=format&fit=crop' },
-            { id: 29, category: 'juices', title: 'Pomegranate Juice', price: '2.50 JD', img: 'https://images.unsplash.com/photo-1546173159-315724a31696?w=400&auto=format&fit=crop' },
-            { id: 30, category: 'juices', title: 'Mango Juice', price: '2.50 JD', img: 'https://images.unsplash.com/photo-1546173159-315724a31696?w=400&auto=format&fit=crop' },
-
-            // 4. MILKSHAKES (الميلك شيك)
-            { id: 31, category: 'milkshakes', title: 'Pistachio Shake', price: '4.90 JD', img: 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=400&auto=format&fit=crop' },
-            { id: 32, category: 'milkshakes', title: 'Chocolate Shake', price: '4.50 JD', img: 'https://images.unsplash.com/photo-1579954115545-a95591f28bfc?w=400&auto=format&fit=crop' },
-            { id: 33, category: 'milkshakes', title: 'Baklava Shake', price: '4.90 JD', img: 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=400&auto=format&fit=crop' },
-            { id: 34, category: 'milkshakes', title: 'Mixed Berry Shake', price: '4.50 JD', img: 'https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=400&auto=format&fit=crop' },
-
-            // 5. SMOOTHIES (السموذي)
-            { id: 35, category: 'smoothies', title: 'Mango Smoothie', price: '3.50 JD', img: 'https://images.unsplash.com/photo-1623065422902-30a2d299bbe4?w=400&auto=format&fit=crop' },
-            { id: 36, category: 'smoothies', title: 'Mango Passion Smoothie', price: '3.50 JD', img: 'https://images.unsplash.com/photo-1505252585461-04db1eb84625?w=400&auto=format&fit=crop' },
-            { id: 37, category: 'smoothies', title: 'Peach & Raspberry Smoothie', price: '3.50 JD', img: 'https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=400&auto=format&fit=crop' },
-            { id: 38, category: 'smoothies', title: 'Mixed Berry Smoothie', price: '3.50 JD', img: 'https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=400&auto=format&fit=crop' },
-
-            // 6. ICED COFFEES (القهوة الباردة)
-            { id: 39, category: 'iced-coffee', title: 'Iced Mocha', price: '3.25 JD', img: 'https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=400&auto=format&fit=crop' },
-            { id: 40, category: 'iced-coffee', title: 'Iced Latte', price: '3.00 JD', img: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&auto=format&fit=crop' },
-            { id: 41, category: 'iced-coffee', title: 'Iced Americano', price: '2.00 JD', img: 'https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=400&auto=format&fit=crop' },
-            { id: 42, category: 'iced-coffee', title: 'Iced Caramel Macchiato', price: '3.50 JD', img: 'https://images.unsplash.com/photo-1485808191679-5f86510681a2?w=400&auto=format&fit=crop' },
-            { id: 43, category: 'iced-coffee', title: 'Iced White Mocha', price: '3.25 JD', img: 'https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=400&auto=format&fit=crop' },
-            { id: 44, category: 'iced-coffee', title: 'Iced Spanish Latte', price: '3.50 JD', img: 'https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=400&auto=format&fit=crop' },
-
-            // 7. REFRESHING DRINKS (المشروبات المنعشة والموهيتو)
-            { id: 45, category: 'refreshing', title: 'Mixed Berry Mojito', price: '3.25 JD', img: 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=400&auto=format&fit=crop' },
-            { id: 46, category: 'refreshing', title: 'Blue Ocean Mojito', price: '3.25 JD', img: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=400&auto=format&fit=crop' },
-
-            // 8. FRAPPUCCINO (الفرابوتشينو)
-            { id: 47, category: 'frappuccino', title: 'Coffee Buzz', price: '3.75 JD', img: 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=400&auto=format&fit=crop' },
-
-            // 9. ICED TEAS (الشاي البارد)
-            { id: 48, category: 'iced-teas', title: 'Peach Iced Tea', price: '2.50 JD', img: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400&auto=format&fit=crop' },
-            { id: 49, category: 'iced-teas', title: 'Orange Iced Tea', price: '2.50 JD', img: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400&auto=format&fit=crop' },
-            { id: 50, category: 'iced-teas', title: 'Lemon Raspberry Iced Tea', price: '2.50 JD', img: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400&auto=format&fit=crop' },
-            { id: 51, category: 'iced-teas', title: 'Passion Fruit Iced Tea', price: '2.50 JD', img: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400&auto=format&fit=crop' }
+        const hotDrinks = [
+            { id: 1, title: 'Espresso', price: '2.00 JD', img: 'https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=400&auto=format&fit=crop' },
+            { id: 2, title: 'Americano', price: '2.00 JD', img: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400&auto=format&fit=crop' },
+            { id: 3, title: 'Red Eye', price: '2.50 JD', img: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400&auto=format&fit=crop' },
+            { id: 4, title: 'Cortado', price: '2.50 JD', img: 'https://images.unsplash.com/photo-1534778101976-62847782c213?w=400&auto=format&fit=crop' },
+            { id: 5, title: 'Cappuccino', price: '3.00 JD', img: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400&auto=format&fit=crop' },
+            { id: 6, title: 'White Mocha', price: '3.25 JD', img: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?w=400&auto=format&fit=crop' },
+            { id: 7, title: 'Caramel Macchiato', price: '3.50 JD', img: 'https://images.unsplash.com/photo-1485808191679-5f86510681a2?w=400&auto=format&fit=crop' },
+            { id: 8, title: 'Spanish Latte', price: '3.50 JD', img: 'https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=400&auto=format&fit=crop' },
+            { id: 9, title: 'Hot Chocolate', price: '3.25 JD', img: 'https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=400&auto=format&fit=crop' },
+            { id: 10, title: 'Tea', price: '2.00 JD', img: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=400&auto=format&fit=crop' },
+            { id: 11, title: 'Espresso Macchiato', price: '2.50 JD', img: 'https://images.unsplash.com/photo-1485808191679-5f86510681a2?w=400&auto=format&fit=crop' },
+            { id: 12, title: 'Dark Mocha', price: '3.25 JD', img: 'https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?w=400&auto=format&fit=crop' },
+            { id: 13, title: 'Herbal Tea', price: '2.00 JD', img: 'https://images.unsplash.com/photo-1597481499750-3e6b22637e12?w=400&auto=format&fit=crop' },
+            { id: 14, title: 'Caffe Latte', price: '3.00 JD', img: 'https://images.unsplash.com/photo-1534778101976-62847782c213?w=400&auto=format&fit=crop' },
+            { id: 15, title: 'Coffee Day', price: '1.50 JD', img: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&auto=format&fit=crop' },
+            { id: 16, title: 'Turkish Coffee', price: '2.00 JD', img: 'https://images.unsplash.com/photo-1588612165039-3f0f74519969?w=400&auto=format&fit=crop' },
+            { id: 17, title: 'Flat White', price: '2.75 JD', img: 'https://images.unsplash.com/photo-1577968897966-3d4325b36b61?w=400&auto=format&fit=crop' }
         ];
 
-        const categoryNames = {
-            'desserts': 'الحلويات | DESSERTS',
-            'coffee': 'القهوة الكلاسيكية | COFFEE CLASSICS',
-            'iced-coffee': 'القهوة الباردة | ICED COFFEES',
-            'juices': 'العصائر الطبيعية | JUICES',
-            'milkshakes': 'الميلك شيك | MILKSHAKES',
-            'smoothies': 'السموذي | SMOOTHIES',
-            'refreshing': 'المشروبات المنعشة | REFRESHING DRINKS',
-            'frappuccino': 'الفرابوتشينو | FRAPPUCCINO',
-            'iced-teas': 'الشاي البارد | ICED TEAS'
-        };
-
-        function renderMenu(items) {
-            const container = document.getElementById('menuContainer');
+        function renderItems(items) {
+            const container = document.getElementById('gridContainer');
             container.innerHTML = '';
-
-            const grouped = {};
             items.forEach(item => {
-                if (!grouped[item.category]) grouped[item.category] = [];
-                grouped[item.category].push(item);
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.onclick = () => openModal(item.title, item.price, item.img);
+                card.innerHTML = `
+                    <div class="card-img-wrap">
+                        <img src="${item.img}" alt="${item.title}">
+                    </div>
+                    <div class="card-title">${item.title}</div>
+                    <div class="price-badge">${item.price}</div>
+                `;
+                container.appendChild(card);
             });
-
-            for (const cat in grouped) {
-                const section = document.createElement('div');
-                section.id = 'sec-' + cat;
-                
-                let sectionHTML = `<div class="section-title">${categoryNames[cat] || cat}</div>`;
-                sectionHTML += '<div class="grid">';
-
-                grouped[cat].forEach(item => {
-                    sectionHTML += `
-                        <div class="card" onclick="openModal('${item.title}', '${item.price}', '${item.img}')">
-                            <div class="card-img-wrap">
-                                <img src="${item.img}" alt="${item.title}" loading="lazy">
-                            </div>
-                            <div class="card-title">${item.title}</div>
-                            <div class="price-badge">${item.price}</div>
-                        </div>
-                    `;
-                });
-
-                sectionHTML += '</div>';
-
-                if (cat === 'desserts') {
-                    sectionHTML += `
-                        <div class="banner-card">
-                            <div class="banner-header">
-                                <div class="banner-title">Add Ice Cream 🍦</div>
-                                <div class="banner-price">1.00 JD</div>
-                            </div>
-                            <div class="banner-desc">Served without ice cream. You can add any flavor you like.</div>
-                        </div>
-                    `;
-                }
-
-                section.innerHTML = sectionHTML;
-                container.appendChild(section);
-            }
-
-            // Add-Ons Banner Footer
-            const addonsBanner = document.createElement('div');
-            addonsBanner.className = 'banner-card';
-            addonsBanner.style.borderColor = 'var(--price-tag)';
-            addonsBanner.innerHTML = `
-                <div class="banner-header">
-                    <div class="banner-title">Add-Ons (الإضافات) ☕</div>
-                    <div class="banner-price">0.75 JD</div>
-                </div>
-                <div class="banner-desc">Extra Shot, Extra Milk, Alternative Milk, Flavor, Honey, Whipped Cream</div>
-            `;
-            container.appendChild(addonsBanner);
-        }
-
-        function filterCategory(cat, btn) {
-            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            if (cat === 'all') {
-                renderMenu(menuData);
-            } else {
-                const filtered = menuData.filter(i => i.category === cat);
-                renderMenu(filtered);
-            }
         }
 
         function searchMenu() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            const filtered = menuData.filter(i => i.title.toLowerCase().includes(query));
-            renderMenu(filtered);
+            const q = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = hotDrinks.filter(i => i.title.toLowerCase().includes(q));
+            renderItems(filtered);
         }
 
         function openModal(title, price, img) {
@@ -581,7 +409,7 @@
             document.getElementById('itemModal').classList.remove('active');
         }
 
-        renderMenu(menuData);
+        renderItems(hotDrinks);
     </script>
 </body>
 </html>
