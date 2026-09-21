@@ -1,412 +1,399 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قائمة المشروبات الساخنة</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>قائمة المشروبات الساخنة - Coffee Classics</title>
+    <!-- خطوط جوجل وأيقونات FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
+        :root {
+            --bg-color: #0f0d0e;
+            --card-bg: #1a1618;
+            --accent-gold: #d4af37;
+            --accent-warm: #e6a15c;
+            --text-light: #f5f2eb;
+            --text-muted: #a09a95;
+            --border-color: #2d2629;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Cairo', sans-serif;
         }
 
         body {
-            background-color: #f8f5f0;
-            color: #333;
-            line-height: 1.6;
-            padding-bottom: 40px;
-        }
-
-        header {
-            background-color: #3c2a21;
-            color: #fff;
-            text-align: center;
-            padding: 2rem 1rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        header h1 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-            color: #e5ba73;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 0 15px;
-        }
-
-        .search-container {
-            margin-bottom: 25px;
-            text-align: center;
-        }
-
-        .search-input {
-            width: 100%;
-            max-width: 500px;
-            padding: 12px 20px;
-            font-size: 1rem;
-            border: 2px solid #1a120b;
-            border-radius: 25px;
-            outline: none;
-            transition: all 0.3s ease;
-        }
-
-        .search-input:focus {
-            border-color: #e5ba73;
-            box-shadow: 0 0 8px rgba(229, 186, 115, 0.5);
-        }
-
-        .section-title {
-            font-size: 1.5rem;
-            color: #3c2a21;
-            margin: 30px 0 15px;
-            border-bottom: 2px solid #e5ba73;
-            padding-bottom: 5px;
-            display: inline-block;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .card {
-            background: #fff;
-            border-radius: 12px;
-            border-top: 4px solid #e5ba73;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            transition: transform 0.2s, box-shadow 0.2s;
+            background-color: var(--bg-color);
+            color: var(--text-light);
+            font-family: 'Cairo', 'Poppins', sans-serif;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            padding: 20px;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        }
-
-        .card-body {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            justify-content: space-between;
-        }
-
-        .card-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #3c2a21;
-            margin-bottom: 8px;
-        }
-
-        .card-desc {
-            font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 15px;
-        }
-
-        .card-price {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #b55d28;
-            text-align: left;
-        }
-
-        .addons-grid {
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-        }
-
-        .addon-card {
-            background: #fff;
-            padding: 15px 20px;
-            border-radius: 10px;
-            border-right: 4px solid #e5ba73;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            display: flex;
-            justify-content: space-between;
             align-items: center;
+            padding: 40px 20px;
+            background-image: radial-gradient(circle at 50% 0%, #2a1f1d 0%, #0f0d0e 70%);
         }
 
-        .addon-title {
-            font-weight: 600;
-            color: #3c2a21;
-        }
-
-        .addon-price {
-            font-weight: 700;
-            color: #b55d28;
-        }
-
-        .no-results {
+        .header {
             text-align: center;
-            grid-column: 1 / -1;
+            margin-bottom: 40px;
+            max-width: 800px;
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            color: var(--accent-gold);
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            font-weight: 800;
+            text-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+        }
+
+        .header p {
+            color: var(--text-muted);
             font-size: 1.1rem;
-            color: #777;
-            display: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .divider {
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+            margin: 20px auto 0;
+        }
+
+        .menu-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .menu-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
             padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent-gold);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.4);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5), 0 0 15px rgba(212, 175, 55, 0.1);
+        }
+
+        .menu-item:hover::before {
+            opacity: 1;
+        }
+
+        .item-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .item-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--accent-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .item-details h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 2px;
+            direction: ltr;
+            text-align: right;
+        }
+
+        .item-details span {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: block;
+        }
+
+        .item-price {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--accent-warm);
+            background: rgba(230, 161, 92, 0.1);
+            padding: 8px 14px;
+            border-radius: 20px;
+            border: 1px solid rgba(230, 161, 92, 0.2);
+            white-space: nowrap;
+        }
+
+        footer {
+            margin-top: 60px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 2.1rem;
+            }
+            .menu-container {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>قائمة المشروبات الساخنة</h1>
-        <p>استمتع بأجود أنواع القهوة والمشروبات الساخنة</p>
+    <header class="header">
+        <h1>مشروبات ساخنة كلاسيكية</h1>
+        <p>COFFEE CLASSICS</p>
+        <div class="divider"></div>
     </header>
 
-    <div class="container">
-        <!-- شريط البحث -->
-        <div class="search-container">
-            <input type="text" id="searchInput" class="search-input" placeholder="أبحث عن مشروبك المفضل..." onkeyup="filterMenu()">
+    <main class="menu-container">
+        <!-- 1 -->
+        <div class="menu-item">
+            <div class="item-info">
+                <div class="item-icon"><i class="fa-solid fa-mug-hot"></i></div>
+                <div class="item-details">
+                    <h3>Espresso</h3>
+                    <span>إسبريسو</span>
+                </div>
+            </div>
+            <div class="item-price">2.00 JD</div>
         </div>
 
-        <!-- قسم المشروبات الساخنة (17 صنف بدون صور) -->
-        <h2 class="section-title">المشروبات الساخنة</h2>
-        <div class="grid" id="menuGrid">
-
-            <!-- 1. القهوة التركية -->
-            <div class="card item">
-                <div class="card-body">
-                    <div>
-                        <div class="card-title">القهوة التركية</div>
-                        <div class="card-desc">قهوة غنية ومحضرة على الأصول بطعم أصيل.</div>
-                    </div>
-                    <div class="card-price">2.00 د.أ</div>
+        <!-- 2 -->
+        <div class="menu-item">
+            <div class="item-info">
+                <div class="item-icon"><i class="fa-solid fa-mug-hot"></i></div>
+                <div class="item-details">
+                    <h3>Americano</h3>
+                    <span>أمريكانو</span>
                 </div>
             </div>
-
-            <!-- 2. إسبريسو -->
-            <div class="card item">
-                <div class="card-body">
-                    <div>
-                        <div class="card-title">إسبريسو</div>
-                        <div class="card-desc">جرعة مركزة من القهوة الغنية بالنكهة.</div>
-                    </div>
-                    <div class="card-price">1.50 د.أ</div>
-                </div>
-            </div>
-
-            <!-- 3. أمريكانو -->
-            <div class="card item">
-                <div class="card-body">
-                    <div>
-                        <div class="card-title">أمريكانو</div>
-                        <div class="card-desc">إسبريسو مخفف بالماء الساخن لمذاق متوازن.</div>
-                    </div>
-                    <div class="card-price">2.00 د.أ</div>
-                </div>
-            </div>
-
-            <!-- 4. كابوتشينو -->
-            <div class="card item">
-                <div class="card-body">
-                    <div>
-                        <div class="card-title">كابوتشينو</div>
-                        <div class="card-desc">مزيج متناغم من الإسبريسو والحليب ورغوة الحليب الغنية.</div>
-                    </div>
-                    <div class="card-price">2.50 د.أ</div>
-                </div>
-            </div>
-
-            <!-- 5. لاتيه -->
-            <div class="card item">
-                <div class="card-body">
-                    <div>
-                        <div class="card-title">لاتيه</div>
-                        <div class="card-desc">إسبريسو سلس مع كمية سخية من الحليب المبخر.</div>
-                    </div>
-                    <div class="card-price">2.50 د.أ</div>
-                </div>
-            </div>
-
-            <!-- 6. سبانيش لاتيه -->
-            <div class="card item">
-                <div class="card-body">
-                    <div>
-                        <div class="card-title">سبانيش لاتيه</div>
-                        <div class="card-desc">لاتيه مميز مع لمسة من الحليب المكثف المحلى.</div>
-                    </div>
-                    <div class="card-price">3.00 د.أ</div>
-                </div>
-            </div>
-
-            <!-- 7. فلات وايت -->
-            <div class="card item">
-                <div class="card-body">
-                    <div>
-                        <div class="card-title">فلات وايت</div>
-                        <div class="card-desc">إسبريسو مزدوج مع طبقة رقيقة ناعمة من الحليب.</div>
-                    </div>
-                    <div class="card-price">2.50 د.أ</div>
-                </div>
-            </div>
-
-            <!-- 8. موكا ساخنة -->
-            <div class="card item">
-                <div class="card-body">
-                    <div>
-                        <div class="card-title">موكا ساخنة</div>
-                        <div class="card-desc">مزج رائع بين الإسبريسو والشوكولاتة والحليب.</div>
-                    </div>
-                    <div class="card-price">2.75 د.أ</div>
-                </div>
-            </div>
-
-            <!-- 9. شوكولاتة ساخنة -->
-            <div class="card item">
-                <div class="card-body">
-                    <div>
-                        <div class="card-title">شوكولاتة ساخنة</div>
-                        <div class="card-desc">شراب الشوكولاتة الغني بالحليب الدافئ.</div>
-                    </div>
-                    <div class="card-price">2.50 د.أ</div>
-                </div>
-            </div>
-
-            <!-- 10. شاي بالنعناع -->
-            <div class="card item">
-                <div class="card-body">
-                    <div>
-                        <div class="card-title">شاي بالنعناع</div>
-                        <div class="card-desc">شاي أوراق طبيعي مع أوراق النعناع الطازجة.</div>
-                    </div>
-                    <div class="card-price">1.00 د.أ</div>
-                </div>
-            </div>
-
-            <!-- 11. شاي كرك -->
-            <div class="card item">
-                <div class="card-body">
-                    <div>
-                        <div class="card-title">شاي كرك</div>
-                        <div class="card-desc">شاي مغلي مع الحليب والهيل والبهارات العطرية.</div>
-                    </div>
-                    <div class="card-price">1.50 د.أ</div>
-                </div>
-            </div>
-
-            <!-- 12. شاي أخضر -->
-            <div class="card item">
-                <div class="card-body">
-                    <div>
-                        <div class="card-title">شاي أخضر</div>
-                        <div class="card-desc">شاي أخضر منقي ومفيد ومريح للأعصاب.</div>
-                    </div>
-                    <div class="card-price">1.00 د.أ</div>
-                </div>
-            </div>
-
-            <!-- 13. سحلب -->
-            <div class="card item">
-                <div class="card-body">
-                    <div>
-                        <div class="card-title">سحلب</div>
-                        <div class="card-desc">مشروب السحلب الدافئ المزين بالمكسرات والقرفة.</div>
-                    </div>
-                    <div class="card-price">2.00 د.أ</div>
-                </div>
-            </div>
-
-            <!-- 14. قهوة فرنسية -->
-            <div class="card item">
-                <div class="card-body">
-                    <div>
-                        <div class="card-title">قهوة فرنسية</div>
-                        <div class="card-desc">قهوة بفرنسا مع البندق والحليب الدافئ.</div>
-                    </div>
-                    <div class="card-price">2.25 د.أ</div>
-                </div>
-            </div>
-
-            <!-- 15. قهوة عربية -->
-            <div class="card item">
-                <div class="card-body">
-                    <div>
-                        <div class="card-title">قهوة عربية</div>
-                        <div class="card-desc">قهوة محروقة بالهيل والزعفران على الطريقة الأصيلة.</div>
-                    </div>
-                    <div class="card-price">2.00 د.أ</div>
-                </div>
-            </div>
-
-            <!-- 16. كورتادو -->
-            <div class="card item">
-                <div class="card-body">
-                    <div>
-                        <div class="card-title">كورتادو</div>
-                        <div class="card-desc">نسب متساوية من الإسبريسو والحليب المبخر.</div>
-                    </div>
-                    <div class="card-price">2.25 د.أ</div>
-                </div>
-            </div>
-
-            <!-- 17. أوريو ساخن -->
-            <div class="card item">
-                <div class="card-body">
-                    <div>
-                        <div class="card-title">أوريو ساخن</div>
-                        <div class="card-desc">مشروب الأوريو الدافئ مع الحليب وقطع البسكويت.</div>
-                    </div>
-                    <div class="card-price">2.75 د.أ</div>
-                </div>
-            </div>
-
-            <p class="no-results" id="noResults">لم يتم العثور على مشروب بهذا الاسم.</p>
+            <div class="item-price">2.00 JD</div>
         </div>
 
-        <!-- قسم الإضافات -->
-        <h2 class="section-title">الإضافات (Add-Ons)</h2>
-        <div class="grid addons-grid">
-            <div class="addon-card">
-                <span class="addon-title">شوت إسبريسو إضافي</span>
-                <span class="addon-price">0.75 د.أ</span>
+        <!-- 3 -->
+        <div class="menu-item">
+            <div class="item-info">
+                <div class="item-icon"><i class="fa-solid fa-mug-hot"></i></div>
+                <div class="item-details">
+                    <h3>Red Eye</h3>
+                    <span>ريد آي</span>
+                </div>
             </div>
-            <div class="addon-card">
-                <span class="addon-title">حليب إضافي (شوفان/لوز/عادي)</span>
-                <span class="addon-price">0.50 د.أ</span>
-            </div>
-            <div class="addon-card">
-                <span class="addon-title">سيروب نكهات (فانيليا/كراميل/بندق)</span>
-                <span class="addon-price">0.50 د.أ</span>
-            </div>
-            <div class="addon-card">
-                <span class="addon-title">كريمة مخفوقة</span>
-                <span class="addon-price">0.50 د.أ</span>
-            </div>
+            <div class="item-price">2.50 JD</div>
         </div>
-    </div>
 
-    <script>
-        function filterMenu() {
-            const input = document.getElementById('searchInput').value.toLowerCase().trim();
-            const items = document.querySelectorAll('#menuGrid .item');
-            let hasVisibleItem = false;
+        <!-- 4 -->
+        <div class="menu-item">
+            <div class="item-info">
+                <div class="item-icon"><i class="fa-solid fa-mug-hot"></i></div>
+                <div class="item-details">
+                    <h3>Cortado</h3>
+                    <span>كورتادو</span>
+                </div>
+            </div>
+            <div class="item-price">2.50 JD</div>
+        </div>
 
-            items.forEach(item => {
-                const title = item.querySelector('.card-title').textContent.toLowerCase();
-                const desc = item.querySelector('.card-desc').textContent.toLowerCase();
-                if (title.includes(input) || desc.includes(input)) {
-                    item.style.display = "flex";
-                    hasVisibleItem = true;
-                } else {
-                    item.style.display = "none";
-                }
-            });
+        <!-- 5 -->
+        <div class="menu-item">
+            <div class="item-info">
+                <div class="item-icon"><i class="fa-solid fa-mug-hot"></i></div>
+                <div class="item-details">
+                    <h3>Cappuccino</h3>
+                    <span>كابوتشينو</span>
+                </div>
+            </div>
+            <div class="item-price">3.00 JD</div>
+        </div>
 
-            const noResults = document.getElementById('noResults');
-            if (hasVisibleItem) {
-                noResults.style.display = "none";
-            } else {
-                noResults.style.display = "block";
-            }
-        }
-    </script>
+        <!-- 6 -->
+        <div class="menu-item">
+            <div class="item-info">
+                <div class="item-icon"><i class="fa-solid fa-mug-saucer"></i></div>
+                <div class="item-details">
+                    <h3>White Mocha</h3>
+                    <span>وايت موكا</span>
+                </div>
+            </div>
+            <div class="item-price">3.25 JD</div>
+        </div>
+
+        <!-- 7 -->
+        <div class="menu-item">
+            <div class="item-info">
+                <div class="item-icon"><i class="fa-solid fa-mug-saucer"></i></div>
+                <div class="item-details">
+                    <h3>Caramel Macchiato</h3>
+                    <span>كاراميل ماكياتو</span>
+                </div>
+            </div>
+            <div class="item-price">3.50 JD</div>
+        </div>
+
+        <!-- 8 -->
+        <div class="menu-item">
+            <div class="item-info">
+                <div class="item-icon"><i class="fa-solid fa-mug-hot"></i></div>
+                <div class="item-details">
+                    <h3>Spanish Latte</h3>
+                    <span>سبانيش لاتيه</span>
+                </div>
+            </div>
+            <div class="item-price">3.50 JD</div>
+        </div>
+
+        <!-- 9 -->
+        <div class="menu-item">
+            <div class="item-info">
+                <div class="item-icon"><i class="fa-solid fa-mug-saucer"></i></div>
+                <div class="item-details">
+                    <h3>Hot Chocolate</h3>
+                    <span>هوت شوكليت</span>
+                </div>
+            </div>
+            <div class="item-price">3.25 JD</div>
+        </div>
+
+        <!-- 10 -->
+        <div class="menu-item">
+            <div class="item-info">
+                <div class="item-icon"><i class="fa-solid fa-leaf"></i></div>
+                <div class="item-details">
+                    <h3>Tea</h3>
+                    <span>شاي</span>
+                </div>
+            </div>
+            <div class="item-price">2.00 JD</div>
+        </div>
+
+        <!-- 11 -->
+        <div class="menu-item">
+            <div class="item-info">
+                <div class="item-icon"><i class="fa-solid fa-mug-hot"></i></div>
+                <div class="item-details">
+                    <h3>Espresso Macchiato</h3>
+                    <span>إسبريسو ماكياتو</span>
+                </div>
+            </div>
+            <div class="item-price">2.50 JD</div>
+        </div>
+
+        <!-- 12 -->
+        <div class="menu-item">
+            <div class="item-info">
+                <div class="item-icon"><i class="fa-solid fa-mug-saucer"></i></div>
+                <div class="item-details">
+                    <h3>Dark Mocha</h3>
+                    <span>دارك موكا</span>
+                </div>
+            </div>
+            <div class="item-price">3.25 JD</div>
+        </div>
+
+        <!-- 13 -->
+        <div class="menu-item">
+            <div class="item-info">
+                <div class="item-icon"><i class="fa-solid fa-leaf"></i></div>
+                <div class="item-details">
+                    <h3>Herbal Tea</h3>
+                    <span>شاي أعشاب</span>
+                </div>
+            </div>
+            <div class="item-price">2.00 JD</div>
+        </div>
+
+        <!-- 14 -->
+        <div class="menu-item">
+            <div class="item-info">
+                <div class="item-icon"><i class="fa-solid fa-mug-hot"></i></div>
+                <div class="item-details">
+                    <h3>Caffe Latte</h3>
+                    <span>كافيه لاتيه</span>
+                </div>
+            </div>
+            <div class="item-price">3.00 JD</div>
+        </div>
+
+        <!-- 15 -->
+        <div class="menu-item">
+            <div class="item-info">
+                <div class="item-icon"><i class="fa-solid fa-mug-hot"></i></div>
+                <div class="item-details">
+                    <h3>Coffee Day</h3>
+                    <span>قهوة اليوم</span>
+                </div>
+            </div>
+            <div class="item-price">1.50 JD</div>
+        </div>
+
+        <!-- 16 -->
+        <div class="menu-item">
+            <div class="item-info">
+                <div class="item-icon"><i class="fa-solid fa-mug-hot"></i></div>
+                <div class="item-details">
+                    <h3>Turkish Coffee</h3>
+                    <span>قهوة تركية</span>
+                </div>
+            </div>
+            <div class="item-price">2.00 JD</div>
+        </div>
+
+        <!-- 17 -->
+        <div class="menu-item">
+            <div class="item-info">
+                <div class="item-icon"><i class="fa-solid fa-mug-saucer"></i></div>
+                <div class="item-details">
+                    <h3>Flat White</h3>
+                    <span>فلات وايت</span>
+                </div>
+            </div>
+            <div class="item-price">2.75 JD</div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© قائمة القهوة الكلاسيكية - جميع الحقوق محفوظة</p>
+    </footer>
+
 </body>
 </html>
