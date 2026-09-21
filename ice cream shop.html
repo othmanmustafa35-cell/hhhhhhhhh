@@ -51,7 +51,7 @@
                               url('https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=1920&auto=format&fit=crop');
         }
 
-        /* خلفية الحلويات والآيسكريم */
+        /* خلفية الحلويات */
         body.theme-sweets {
             background-image: linear-gradient(rgba(25, 12, 20, 0.88), rgba(25, 12, 20, 0.88)), 
                               url('https://images.unsplash.com/photo-1570197788417-0e82375c9371?q=80&w=1920&auto=format&fit=crop');
@@ -308,6 +308,49 @@
             border-color: rgba(255, 128, 171, 0.3);
         }
 
+        /* كارت إضافة الآيس كريم الإضافية */
+        .extra-box {
+            margin-top: 25px;
+            background: rgba(255, 128, 171, 0.12);
+            border: 2px dashed rgba(255, 128, 171, 0.5);
+            border-radius: 18px;
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .extra-info .extra-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--accent-pink);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 4px;
+        }
+
+        .extra-info .extra-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .extra-price-tag {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #ffffff;
+            background: linear-gradient(135deg, #ff80ab, #c51162);
+            padding: 10px 22px;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(255, 128, 171, 0.4);
+            white-space: nowrap;
+        }
+
         footer {
             margin-top: auto; padding-top: 30px; color: var(--text-muted);
             font-size: 0.85rem; text-align: center;
@@ -340,7 +383,7 @@
             <i class="fa-solid fa-snowflake"></i> المشروبات الباردة
         </button>
         <button class="nav-btn sweets-btn" onclick="switchTab('sweets')">
-            <i class="fa-solid fa-ice-cream"></i> الحلويات والآيسكريم
+            <i class="fa-solid fa-cookie-bite"></i> الحلويات
         </button>
     </nav>
 
@@ -430,37 +473,98 @@
         </div>
     </main>
 
-    <!-- ================= 3. قسم الحلويات والآيسكريم ================= -->
+    <!-- ================= 3. قسم الحلويات (محدث بناءً على الصورة) ================= -->
     <main id="sweets-tab" class="tab-content">
         <div class="section-header">
-            <h2 class="section-title">الحلويات والآيس كريم</h2>
+            <h2 class="section-title">الحلويات (DESSERTS)</h2>
         </div>
 
-        <div class="subcategory-title"><i class="fa-solid fa-ice-cream"></i> ICE CREAM (الآيس كريم)</div>
         <div class="menu-container">
-            <div class="menu-item"><div class="item-info"><div class="item-icon"><i class="fa-solid fa-ice-cream"></i></div><div class="item-details"><h3>Single Scoop</h3><span>سكوب آيس كريم single</span></div></div><div class="item-price">1.50 JD</div></div>
-            <div class="menu-item"><div class="item-info"><div class="item-icon"><i class="fa-solid fa-ice-cream"></i></div><div class="item-details"><h3>Double Scoop</h3><span>2 سكوب آيس كريم</span></div></div><div class="item-price">2.50 JD</div></div>
-            <div class="menu-item"><div class="item-info"><div class="item-icon"><i class="fa-solid fa-ice-cream"></i></div><div class="item-details"><h3>Triple Scoop</h3><span>3 سكوب آيس كريم</span></div></div><div class="item-price">3.50 JD</div></div>
-            <div class="menu-item"><div class="item-info"><div class="item-icon"><i class="fa-solid fa-crown"></i></div><div class="item-details"><h3>Rowad Special Cup</h3><span>كأس الرواد المميز</span></div></div><div class="item-price">4.00 JD</div></div>
-            <div class="menu-item"><div class="item-info"><div class="item-icon"><i class="fa-solid fa-ice-cream"></i></div><div class="item-details"><h3>Soft Serve Ice Cream</h3><span>آيس كريم صوفت</span></div></div><div class="item-price">1.50 JD</div></div>
+            <div class="menu-item">
+                <div class="item-info">
+                    <div class="item-icon"><i class="fa-solid fa-stroopwafel"></i></div>
+                    <div class="item-details"><h3>Waffle</h3><span>وافل</span></div>
+                </div>
+                <div class="item-price">3.50 JD</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-info">
+                    <div class="item-icon"><i class="fa-solid fa-scroll"></i></div>
+                    <div class="item-details"><h3>Roll</h3><span>رول</span></div>
+                </div>
+                <div class="item-price">3.00 JD</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-info">
+                    <div class="item-icon"><i class="fa-solid fa-cubes"></i></div>
+                    <div class="item-details"><h3>Brownie</h3><span>براوني</span></div>
+                </div>
+                <div class="item-price">3.00 JD</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-info">
+                    <div class="item-icon"><i class="fa-solid fa-scroll"></i></div>
+                    <div class="item-details"><h3>Crepe</h3><span>كريب</span></div>
+                </div>
+                <div class="item-price">3.50 JD</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-info">
+                    <div class="item-icon"><i class="fa-solid fa-cookie"></i></div>
+                    <div class="item-details"><h3>Cookies</h3><span>كوكيز</span></div>
+                </div>
+                <div class="item-price">2.50 JD</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-info">
+                    <div class="item-icon"><i class="fa-solid fa-crown"></i></div>
+                    <div class="item-details"><h3>Rowad Dip</h3><span>رواد ديب</span></div>
+                </div>
+                <div class="item-price">3.75 JD</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-info">
+                    <div class="item-icon"><i class="fa-solid fa-bread-slice"></i></div>
+                    <div class="item-details"><h3>Chimney Cake</h3><span>تشيمني كيك</span></div>
+                </div>
+                <div class="item-price">3.50 JD</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-info">
+                    <div class="item-icon"><i class="fa-solid fa-cake-candles"></i></div>
+                    <div class="item-details"><h3>Cake Slice</h3><span>شريحة كيك</span></div>
+                </div>
+                <div class="item-price">2.50 JD</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-info">
+                    <div class="item-icon"><i class="fa-solid fa-cookie-bite"></i></div>
+                    <div class="item-details"><h3>Ice Cream Chips</h3><span>آيس كريم شيبس</span></div>
+                </div>
+                <div class="item-price">3.50 JD</div>
+            </div>
         </div>
 
-        <div class="subcategory-title"><i class="fa-solid fa-stroopwafel"></i> WAFFLES & CREPES (الوافل والكريب)</div>
-        <div class="menu-container">
-            <div class="menu-item"><div class="item-info"><div class="item-icon"><i class="fa-solid fa-stroopwafel"></i></div><div class="item-details"><h3>Nutella Waffle</h3><span>وافل نوتيلا</span></div></div><div class="item-price">3.50 JD</div></div>
-            <div class="menu-item"><div class="item-info"><div class="item-icon"><i class="fa-solid fa-stroopwafel"></i></div><div class="item-details"><h3>Pistachio Waffle</h3><span>وافل بستاشيو</span></div></div><div class="item-price">4.00 JD</div></div>
-            <div class="menu-item"><div class="item-info"><div class="item-icon"><i class="fa-solid fa-stroopwafel"></i></div><div class="item-details"><h3>Lotus Waffle</h3><span>وافل لوتس</span></div></div><div class="item-price">3.75 JD</div></div>
-            <div class="menu-item"><div class="item-info"><div class="item-icon"><i class="fa-solid fa-scroll"></i></div><div class="item-details"><h3>Fettuccine Crepe</h3><span>كريب فيتوتشيني</span></div></div><div class="item-price">4.00 JD</div></div>
-            <div class="menu-item"><div class="item-info"><div class="item-icon"><i class="fa-solid fa-scroll"></i></div><div class="item-details"><h3>Kinder Crepe</h3><span>كريب كيندر</span></div></div><div class="item-price">4.25 JD</div></div>
-            <div class="menu-item"><div class="item-info"><div class="item-icon"><i class="fa-solid fa-scroll"></i></div><div class="item-details"><h3>Nutella Crepe</h3><span>كريب نوتيلا</span></div></div><div class="item-price">3.50 JD</div></div>
-        </div>
-
-        <div class="subcategory-title"><i class="fa-solid fa-cake-candles"></i> CAKES & DESSERTS (الكيك والحلويات)</div>
-        <div class="menu-container">
-            <div class="menu-item"><div class="item-info"><div class="item-icon"><i class="fa-solid fa-cookie"></i></div><div class="item-details"><h3>Mini Pancakes (10 Pcs)</h3><span>ميني بان كيك (10 قطع)</span></div></div><div class="item-price">3.50 JD</div></div>
-            <div class="menu-item"><div class="item-info"><div class="item-icon"><i class="fa-solid fa-cake-candles"></i></div><div class="item-details"><h3>Lava Cake with Ice Cream</h3><span>لافا كيك مع آيس كريم</span></div></div><div class="item-price">3.75 JD</div></div>
-            <div class="menu-item"><div class="item-info"><div class="item-icon"><i class="fa-solid fa-cheese"></i></div><div class="item-details"><h3>San Sebastian Cheesecake</h3><span>سان سباستيان تشيز كيك</span></div></div><div class="item-price">4.00 JD</div></div>
-            <div class="menu-item"><div class="item-info"><div class="item-icon"><i class="fa-solid fa-cookie-bite"></i></div><div class="item-details"><h3>Chocolate Cookies</h3><span>كوكيز شوكولاتة</span></div></div><div class="item-price">1.50 JD</div></div>
+        <!-- إضافة الملاحظة أسفل الصورة (خيار الآيس كريم الإضافي) -->
+        <div class="extra-box">
+            <div class="extra-info">
+                <div class="extra-title">
+                    <i class="fa-solid fa-ice-cream"></i> Add Ice Cream (إضافة آيس كريم)
+                </div>
+                <div class="extra-desc">
+                    Served without ice cream, You can add any flavor you like<br>
+                    (تقدم بدون آيس كريم، يمكنك إضافة أي نكهة تحبها)
+                </div>
+            </div>
+            <div class="extra-price-tag">1.00 JD</div>
         </div>
     </main>
 
@@ -468,7 +572,6 @@
         <p>© جميع الحقوق محفوظة - الرواد آيسكريم وكافيه (AL ROWAD)</p>
     </footer>
 
-    <!-- JavaScript للتبديل السلس بين الأقسام الثلاثة -->
     <script>
         function switchTab(tabName) {
             document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
