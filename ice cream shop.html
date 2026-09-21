@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منيو الرواد آيس كريم | Al-Rawad Ice Cream Menu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #fceecb;
+            --card-bg: #ffffff;
+            --text-dark: #3a4a58;
+            --text-muted: #7d8b96;
+            --accent-blue: #6b8ea7;
+            --accent-light: #e3ebf0;
+            --price-tag: #88a4b8;
+            --shadow: 0 8px 20px rgba(0,0,0,0.06);
+            --radius: 18px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            padding-bottom: 40px;
+            min-height: 100vh;
+        }
+
+        /* Header & Banner */
+        header {
+            background: linear-gradient(135deg, #f7e3b5 0%, #fceecb 100%);
+            padding: 25px 20px 15px;
+            text-align: center;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .brand-logo {
+            width: 75px;
+            height: 75px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            font-size: 35px;
+        }
+
+        h1 {
+            color: var(--accent-blue);
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        p.subtitle {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        /* Search Bar */
+        .search-box {
+            position: relative;
+            max-width: 450px;
+            margin: 0 auto;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 40px 12px 15px;
+            border: 2px solid #ecd8ab;
+            border-radius: 25px;
+            background: white;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-box input:focus {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 10px rgba(107, 142, 167, 0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent-blue);
+            font-size: 1.1rem;
+        }
+
+        /* Category Nav */
+        .categories-nav {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 15px 20px;
+            scrollbar-width: none;
+        }
+
+        .categories-nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .cat-btn {
+            background: white;
+            color: var(--text-dark);
+            border: none;
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.88rem;
+            white-space: nowrap;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: all 0.25s ease;
+        }
+
+        .cat-btn.active, .cat-btn:hover {
+            background: var(--accent-blue);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Container & Sections */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 10px 15px;
+        }
+
+        .section-title {
+            color: var(--accent-blue);
+            font-size: 1.3rem;
+            font-weight: 800;
+            text-align: center;
+            margin: 25px 0 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .section-title::before, .section-title::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: rgba(107, 142, 167, 0.2);
+        }
+
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        @media (max-width: 400px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 12px 8px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card:active {
+            transform: scale(0.97);
+        }
+
+        .card-img-wrap {
+            width: 100%;
+            height: 85px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 8px;
+            background: #f9f9f9;
+        }
+
+        .card-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-title {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+            line-height: 1.2;
+            height: 2.4em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .price-badge {
+            background: var(--accent-light);
+            color: var(--accent-blue);
+            font-weight: 800;
+            font-size: 0.8rem;
+            padding: 4px 10px;
+            border-radius: 12px;
+            display: inline-block;
+            width: fit-content;
+        }
+
+        /* Addons Banner */
+        .banner-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 15px 20px;
+            margin: 20px 0;
+            box-shadow: var(--shadow);
+            border: 2px dashed var(--accent-blue);
+        }
+
+        .banner-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+
+        .banner-title {
+            color: var(--accent-blue);
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+        .banner-price {
+            background: var(--accent-blue);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 0.85rem;
+        }
+
+        .banner-desc {
+            color: var(--text-muted);
+            font-size: 0.82rem;
+            line-height: 1.4;
+        }
+
+        /* Modal Popup */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.active {
+            display: flex;
+            animation: fadeIn 0.2s ease;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 25px;
+            padding: 20px;
+            max-width: 380px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #eee;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .modal-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 18px;
+            margin-bottom: 15px;
+        }
+
+        .modal-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .modal-price {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--accent-blue);
+            margin-bottom: 10px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand-logo">🍦</div>
+        <h1>الرواد آيس كريم</h1>
+        <p class="subtitle">Al-Rawad Ice Cream & Desserts</p>
+
+        <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="ابحث عن مشروب أو حلوى..." onkeyup="searchMenu()">
+        </div>
+    </header>
+
+    <nav class="categories-nav">
+        <button class="cat-btn active" onclick="filterCategory('all', this)">الكل</button>
+        <button class="cat-btn" onclick="filterCategory('desserts', this)">الحلويات</button>
+        <button class="cat-btn" onclick="filterCategory('coffee', this)">القهوة الساخنة</button>
+        <button class="cat-btn" onclick="filterCategory('iced-coffee', this)">القهوة الباردة</button>
+        <button class="cat-btn" onclick="filterCategory('juices', this)">العصائر والسموذي</button>
+        <button class="cat-btn" onclick="filterCategory('milkshakes', this)">الميلك شيك</button>
+        <button class="cat-btn" onclick="filterCategory('refreshing', this)">المشروبات المنعشة</button>
+    </nav>
+
+    <div class="container" id="menuContainer">
+        <!-- Content inserted dynamically -->
+    </div>
+
+    <!-- Popup Modal -->
+    <div class="modal" id="itemModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            <img src="" id="modalImg" class="modal-img" alt="">
+            <div id="modalTitle" class="modal-title"></div>
+            <div id="modalPrice" class="modal-price"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© الرواد آيس كريم - جميع الحقوق محفوظة</p>
+    </footer>
+
+    <script>
+        const menuData = [
+            // Desserts
+            { id: 1, category: 'desserts', title: 'Waffle', price: '3.50 JD', img: 'https://images.unsplash.com/photo-1562376552-0d160a2f238d?w=300&auto=format&fit=crop' },
+            { id: 2, category: 'desserts', title: 'Roll', price: '3.00 JD', img: 'https://images.unsplash.com/photo-1519869325930-281384150729?w=300&auto=format&fit=crop' },
+            { id: 3, category: 'desserts', title: 'Brownie', price: '3.00 JD', img: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=300&auto=format&fit=crop' },
+            { id: 4, category: 'desserts', title: 'Crepe', price: '3.50 JD', img: 'https://images.unsplash.com/photo-1519676867240-f03562e64548?w=300&auto=format&fit=crop' },
+            { id: 5, category: 'desserts', title: 'Cookies', price: '2.50 JD', img: 'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=300&auto=format&fit=crop' },
+            { id: 6, category: 'desserts', title: 'Rawad Dip', price: '3.75 JD', img: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=300&auto=format&fit=crop' },
+            { id: 7, category: 'desserts', title: 'Chimney Cake', price: '3.50 JD', img: 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=300&auto=format&fit=crop' },
+            { id: 8, category: 'desserts', title: 'Cake Slice', price: '2.50 JD', img: 'https://images.unsplash.com/photo-1535141192574-5d4897c13136?w=300&auto=format&fit=crop' },
+            { id: 9, category: 'desserts', title: 'Ice Cream Chips', price: '3.50 JD', img: 'https://images.unsplash.com/photo-1570197788417-0e82375c9371?w=300&auto=format&fit=crop' },
+
+            // Coffee Classics
+            { id: 10, category: 'coffee', title: 'Espresso', price: '2.00 JD', img: 'https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=300&auto=format&fit=crop' },
+            { id: 11, category: 'coffee', title: 'Americano', price: '2.00 JD', img: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=300&auto=format&fit=crop' },
+            { id: 12, category: 'coffee', title: 'Red Eye', price: '2.50 JD', img: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=300&auto=format&fit=crop' },
+            { id: 13, category: 'coffee', title: 'Cortado', price: '2.50 JD', img: 'https://images.unsplash.com/photo-1534778101976-62847782c213?w=300&auto=format&fit=crop' },
+            { id: 14, category: 'coffee', title: 'Cappuccino', price: '3.00 JD', img: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=300&auto=format&fit=crop' },
+            { id: 15, category: 'coffee', title: 'Spanish Latte', price: '3.50 JD', img: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?w=300&auto=format&fit=crop' },
+
+            // Iced Coffees
+            { id: 16, category: 'iced-coffee', title: 'Iced Mocha', price: '3.25 JD', img: 'https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=300&auto=format&fit=crop' },
+            { id: 17, category: 'iced-coffee', title: 'Iced Latte', price: '3.00 JD', img: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=300&auto=format&fit=crop' },
+            { id: 18, category: 'iced-coffee', title: 'Iced Spanish Latte', price: '3.50 JD', img: 'https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=300&auto=format&fit=crop' },
+
+            // Juices
+            { id: 19, category: 'juices', title: 'Orange Juice', price: '2.50 JD', img: 'https://images.unsplash.com/photo-1613478223719-2ab802602423?w=300&auto=format&fit=crop' },
+            { id: 20, category: 'juices', title: 'Strawberry Juice', price: '2.50 JD', img: 'https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=300&auto=format&fit=crop' },
+
+            // Milkshakes
+            { id: 21, category: 'milkshakes', title: 'Pistachio Shake', price: '4.90 JD', img: 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=300&auto=format&fit=crop' },
+            { id: 22, category: 'milkshakes', title: 'Chocolate Shake', price: '4.50 JD', img: 'https://images.unsplash.com/photo-1579954115545-a95591f28bfc?w=300&auto=format&fit=crop' },
+
+            // Refreshing
+            { id: 23, category: 'refreshing', title: 'Blue Ocean Mojito', price: '3.25 JD', img: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=300&auto=format&fit=crop' },
+            { id: 24, category: 'refreshing', title: 'Mixed Berry Mojito', price: '3.25 JD', img: 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=300&auto=format&fit=crop' }
+        ];
+
+        const categoryNames = {
+            'desserts': 'الحلويات | DESSERTS',
+            'coffee': 'القهوة الكلاسيكية | COFFEE CLASSICS',
+            'iced-coffee': 'القهوة الباردة | ICED COFFEES',
+            'juices': 'العصائر الطبيعية | JUICES',
+            'milkshakes': 'الميلك شيك | MILKSHAKES',
+            'refreshing': 'المشروبات المنعشة | REFRESHING DRINKS'
+        };
+
+        function renderMenu(items) {
+            const container = document.getElementById('menuContainer');
+            container.innerHTML = '';
+
+            const grouped = {};
+            items.forEach(item => {
+                if (!grouped[item.category]) grouped[item.category] = [];
+                grouped[item.category].push(item);
+            });
+
+            for (const cat in grouped) {
+                const section = document.createElement('div');
+                section.id = 'sec-' + cat;
+                
+                let sectionHTML = `<div class="section-title">${categoryNames[cat] || cat}</div>`;
+                sectionHTML += '<div class="grid">';
+
+                grouped[cat].forEach(item => {
+                    sectionHTML += `
+                        <div class="card" onclick="openModal('${item.title}', '${item.price}', '${item.img}')">
+                            <div class="card-img-wrap">
+                                <img src="${item.img}" alt="${item.title}" loading="lazy">
+                            </div>
+                            <div class="card-title">${item.title}</div>
+                            <div class="price-badge">${item.price}</div>
+                        </div>
+                    `;
+                });
+
+                sectionHTML += '</div>';
+
+                if (cat === 'desserts') {
+                    sectionHTML += `
+                        <div class="banner-card">
+                            <div class="banner-header">
+                                <div class="banner-title">Add Ice Cream 🍦</div>
+                                <div class="banner-price">1.00 JD</div>
+                            </div>
+                            <div class="banner-desc">Served without ice cream. You can add any flavor you like.</div>
+                        </div>
+                    `;
+                }
+
+                section.innerHTML = sectionHTML;
+                container.appendChild(section);
+            }
+        }
+
+        function filterCategory(cat, btn) {
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            if (cat === 'all') {
+                renderMenu(menuData);
+            } else {
+                const filtered = menuData.filter(i => i.category === cat);
+                renderMenu(filtered);
+            }
+        }
+
+        function searchMenu() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = menuData.filter(i => i.title.toLowerCase().includes(query));
+            renderMenu(filtered);
+        }
+
+        function openModal(title, price, img) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalPrice').innerText = price;
+            document.getElementById('modalImg').src = img;
+            document.getElementById('itemModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('itemModal').classList.remove('active');
+        }
+
+        renderMenu(menuData);
+    </script>
+</body>
+</html>
