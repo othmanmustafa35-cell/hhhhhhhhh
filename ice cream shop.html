@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الرواد | AL ROWAD - قائمة المشروبات</title>
+    <title>الرواد | AL ROWAD - قائمة الطعام</title>
     
     <!-- خطوط جوجل وأيقونات FontAwesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,18 +13,13 @@
     
     <style>
         :root {
-            --bg-overlay: rgba(15, 10, 8, 0.90);
-            --card-bg: rgba(28, 20, 16, 0.85);
             --accent-gold: #e2b047;
             --accent-cool: #4fc3f7;
-            --accent-warm: #f39c12;
+            --accent-dessert: #e07a5f;
             --text-light: #f8f5f0;
             --text-muted: #c4b8aa;
+            --card-bg: rgba(20, 15, 13, 0.85);
             --border-color: rgba(226, 176, 71, 0.25);
-        }
-
-        html {
-            scroll-behavior: smooth;
         }
 
         * {
@@ -34,40 +29,80 @@
         }
 
         body {
-            background: linear-gradient(var(--bg-overlay), var(--bg-overlay)), 
-                        url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?q=80&w=1920&auto=format&fit=crop') center/cover fixed no-repeat;
             color: var(--text-light);
             font-family: 'Cairo', 'Poppins', sans-serif;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px 15px 50px 15px;
+            padding: 20px 15px;
+            transition: background 0.6s ease-in-out;
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
         }
 
-        /* الهيدر واسم المحل */
+        /* خلفيات الأقسام المتغيرة */
+        body.bg-hot {
+            background-image: linear-gradient(rgba(15, 10, 8, 0.88), rgba(15, 10, 8, 0.88)), 
+                              url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?q=80&w=1920&auto=format&fit=crop');
+        }
+
+        body.bg-cold {
+            background-image: linear-gradient(rgba(10, 18, 26, 0.88), rgba(10, 18, 26, 0.88)), 
+                              url('https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=1920&auto=format&fit=crop');
+        }
+
+        body.bg-desserts {
+            background-image: linear-gradient(rgba(24, 14, 16, 0.88), rgba(24, 14, 16, 0.88)), 
+                              url('https://images.unsplash.com/photo-1562376552-0d160a2f238d?q=80&w=1920&auto=format&fit=crop');
+        }
+
+        /* الهيدر واللوغو */
         .brand-header {
             text-align: center;
-            margin-top: 20px;
-            margin-bottom: 25px;
-            max-width: 800px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo-container {
+            width: 95px;
+            height: 95px;
+            border-radius: 50%;
+            background-color: #92b0c3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid var(--accent-gold);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+        .logo-container img {
             width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .brand-title {
-            font-size: 3.2rem;
+            font-size: 2.8rem;
             font-weight: 900;
             color: var(--accent-gold);
             letter-spacing: 1px;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9), 0 0 10px rgba(226, 176, 71, 0.3);
-            margin-bottom: 5px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9);
+            margin-bottom: 2px;
         }
 
         .brand-subtitle {
             font-family: 'Poppins', sans-serif;
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--text-muted);
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             text-transform: uppercase;
         }
 
@@ -75,9 +110,9 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            margin-top: 12px;
-            background: rgba(226, 176, 71, 0.12);
-            padding: 6px 16px;
+            margin-top: 10px;
+            background: rgba(226, 176, 71, 0.15);
+            padding: 6px 18px;
             border-radius: 20px;
             border: 1px solid var(--border-color);
             color: var(--accent-gold);
@@ -92,31 +127,28 @@
             color: #000;
         }
 
-        /* شريط التنقل للأقسام */
+        /* شريط التنقل */
         .category-nav {
-            position: sticky;
-            top: 15px;
-            z-index: 100;
             display: flex;
             justify-content: center;
             gap: 10px;
             flex-wrap: wrap;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             width: 100%;
-            max-width: 1200px;
-            background: rgba(15, 10, 8, 0.85);
+            max-width: 1000px;
+            background: rgba(15, 10, 8, 0.75);
             backdrop-filter: blur(12px);
-            padding: 12px;
+            padding: 10px;
             border-radius: 40px;
-            border: 1px solid rgba(226, 176, 71, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
         }
 
         .nav-btn {
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--border-color);
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid transparent;
             color: var(--text-muted);
-            padding: 10px 20px;
+            padding: 10px 22px;
             border-radius: 30px;
             font-size: 0.95rem;
             font-weight: 700;
@@ -125,43 +157,54 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            text-decoration: none;
         }
 
-        .nav-btn.active, .nav-btn:hover {
+        .nav-btn.active {
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .nav-btn[data-tab="hot"].active {
             background: linear-gradient(135deg, #e2b047, #c59228);
             color: #1a100a;
-            border-color: var(--accent-gold);
-            box-shadow: 0 4px 15px rgba(226, 176, 71, 0.3);
         }
 
-        .nav-btn-cold:hover {
-            background: linear-gradient(135deg, #29b6f6, #0288d1) !important;
-            color: #fff !important;
-            border-color: #29b6f6 !important;
-            box-shadow: 0 4px 15px rgba(41, 182, 246, 0.4) !important;
+        .nav-btn[data-tab="cold"].active {
+            background: linear-gradient(135deg, #29b6f6, #0288d1);
         }
 
-        /* الأقسام العامة */
-        .menu-section {
+        .nav-btn[data-tab="desserts"].active {
+            background: linear-gradient(135deg, #e07a5f, #bc4749);
+        }
+
+        /* التحكم برؤية الصفحات */
+        .tab-content {
+            display: none;
             width: 100%;
             max-width: 1200px;
-            margin-bottom: 50px;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 30px;
-            width: 100%;
+            margin-bottom: 25px;
         }
 
         .section-title {
             font-size: 2.2rem;
-            color: var(--text-light);
+            font-weight: 800;
             display: inline-block;
             position: relative;
-            padding-bottom: 10px;
-            font-weight: 800;
+            padding-bottom: 8px;
         }
 
         .section-title::after {
@@ -172,32 +215,30 @@
             transform: translateX(-50%);
             width: 80px;
             height: 3px;
-            background: var(--accent-gold);
             border-radius: 2px;
         }
 
-        .section-title.cold::after {
-            background: var(--accent-cool);
-        }
+        .hot-title::after { background: var(--accent-gold); }
+        .cold-title::after { background: var(--accent-cool); }
+        .dessert-title::after { background: var(--accent-dessert); }
 
-        /* عناوين الفرعيات للبارد */
         .subcategory-title {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             color: var(--accent-cool);
-            margin: 25px 0 15px 0;
+            margin: 20px 0 12px 0;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             border-bottom: 1px solid rgba(79, 195, 247, 0.2);
-            padding-bottom: 6px;
+            padding-bottom: 5px;
             font-weight: 700;
         }
 
-        /* شبكة المنتجات */
+        /* شبكة العناصر */
         .menu-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 18px;
             width: 100%;
         }
 
@@ -206,56 +247,49 @@
             backdrop-filter: blur(8px);
             border: 1px solid var(--border-color);
             border-radius: 16px;
-            padding: 18px 20px;
+            padding: 16px 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             transition: all 0.3s ease;
-            position: relative;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
         }
 
         .menu-item:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-gold);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7), 0 0 20px rgba(226, 176, 71, 0.2);
-            background: rgba(38, 28, 22, 0.92);
-        }
-
-        .menu-item.cold-item:hover {
-            border-color: var(--accent-cool);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7), 0 0 20px rgba(79, 195, 247, 0.25);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
         }
 
         .item-info {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 14px;
         }
 
         .item-icon {
-            width: 46px;
-            height: 46px;
+            width: 44px;
+            height: 44px;
             border-radius: 12px;
-            background: rgba(226, 176, 71, 0.12);
-            color: var(--accent-gold);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.25rem;
-            border: 1px solid rgba(226, 176, 71, 0.2);
+            font-size: 1.2rem;
             flex-shrink: 0;
         }
 
-        .item-icon.cold-icon {
-            background: rgba(79, 195, 247, 0.12);
-            color: var(--accent-cool);
-            border-color: rgba(79, 195, 247, 0.25);
-        }
+        /* ألوان الأيقونات والأسعار حسب القسم */
+        .hot-icon { background: rgba(226, 176, 71, 0.12); color: var(--accent-gold); border: 1px solid rgba(226, 176, 71, 0.2); }
+        .hot-price { color: var(--accent-gold); background: rgba(226, 176, 71, 0.1); border: 1px solid rgba(226, 176, 71, 0.3); }
+
+        .cold-icon { background: rgba(79, 195, 247, 0.12); color: var(--accent-cool); border: 1px solid rgba(79, 195, 247, 0.2); }
+        .cold-price { color: var(--accent-cool); background: rgba(79, 195, 247, 0.1); border: 1px solid rgba(79, 195, 247, 0.3); }
+
+        .dessert-icon { background: rgba(224, 122, 95, 0.12); color: var(--accent-dessert); border: 1px solid rgba(224, 122, 95, 0.2); }
+        .dessert-price { color: var(--accent-dessert); background: rgba(224, 122, 95, 0.1); border: 1px solid rgba(224, 122, 95, 0.3); }
 
         .item-details h3 {
             font-family: 'Poppins', sans-serif;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 600;
             color: var(--text-light);
             margin-bottom: 2px;
@@ -271,477 +305,259 @@
 
         .item-price {
             font-family: 'Poppins', sans-serif;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 700;
-            color: var(--accent-gold);
-            background: rgba(226, 176, 71, 0.1);
             padding: 6px 14px;
             border-radius: 20px;
-            border: 1px solid rgba(226, 176, 71, 0.3);
             white-space: nowrap;
         }
 
-        .item-price.cold-price {
-            color: var(--accent-cool);
-            background: rgba(79, 195, 247, 0.1);
-            border-color: rgba(79, 195, 247, 0.3);
+        /* كرت الإضافة الخاص بالحلويات */
+        .addon-card {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, rgba(224, 122, 95, 0.15), rgba(20, 15, 13, 0.9));
+            border: 1px dashed var(--accent-dessert);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .addon-card h4 {
+            color: var(--accent-dessert);
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .addon-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
         }
 
         footer {
-            margin-top: 40px;
+            margin-top: auto;
+            padding-top: 30px;
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             text-align: center;
-            border-top: 1px solid var(--border-color);
-            padding-top: 20px;
-            width: 100%;
-            max-width: 1200px;
         }
 
         @media (max-width: 600px) {
-            .brand-title {
-                font-size: 2.3rem;
-            }
-            .menu-container {
-                grid-template-columns: 1fr;
-            }
-            .nav-btn {
-                padding: 8px 14px;
-                font-size: 0.85rem;
-            }
+            .brand-title { font-size: 2.2rem; }
+            .nav-btn { padding: 8px 14px; font-size: 0.85rem; }
+            .menu-container { grid-template-columns: 1fr; }
         }
     </style>
 </head>
-<body>
+<body class="bg-hot">
 
-    <!-- اسم المحل والهوية -->
+    <!-- الهيدر ثابت لجميع الأقسام -->
     <header class="brand-header">
+        <!-- اللوغو الخاص بالمحل -->
+        <div class="logo-container">
+            <svg viewBox="0 0 100 100" width="70" height="70">
+                <circle cx="50" cy="50" r="48" fill="#92b0c3"/>
+                <path d="M50 25 C40 25 35 32 35 40 C35 48 42 52 50 52 C58 52 65 48 65 40 C65 32 60 25 50 25 Z M35 68 C35 58 42 56 50 56 C58 56 65 58 65 68 L65 78 L35 78 Z" fill="#ffffff"/>
+            </svg>
+        </div>
         <h1 class="brand-title">الرواد | AL ROWAD</h1>
         <div class="brand-subtitle">Ice Cream & Coffee Shop</div>
+        
+        <!-- زر الانستغرام الظاهر دائماً -->
         <a href="https://instagram.com/alrowad.jo" target="_blank" class="social-tag">
             <i class="fa-brands fa-instagram"></i> alrowad.jo
         </a>
     </header>
 
-    <!-- شريط التنقل بين الأقسام -->
+    <!-- شريط التنقل المتنقل -->
     <nav class="category-nav">
-        <a href="#hot-drinks" class="nav-btn active"><i class="fa-solid fa-fire"></i> المشروبات الساخنة</a>
-        <a href="#cold-drinks" class="nav-btn nav-btn-cold"><i class="fa-solid fa-snowflake"></i> المشروبات الباردة</a>
-        <a href="#desserts" class="nav-btn" onclick="alert('قسم الحلويات والآيسكريم قريباً!')"><i class="fa-solid fa-ice-cream"></i> الحلويات والآيسكريم</a>
+        <button class="nav-btn active" data-tab="hot" onclick="switchTab('hot', 'bg-hot')">
+            <i class="fa-solid fa-fire"></i> المشروبات الساخنة
+        </button>
+        <button class="nav-btn" data-tab="cold" onclick="switchTab('cold', 'bg-cold')">
+            <i class="fa-solid fa-snowflake"></i> المشروبات الباردة
+        </button>
+        <button class="nav-btn" data-tab="desserts" onclick="switchTab('desserts', 'bg-desserts')">
+            <i class="fa-solid fa-ice-cream"></i> الحلويات
+        </button>
     </nav>
 
-    <!-- القسم الأول: المشروبات الساخنة الكلاسيكية (17 عنصر) -->
-    <section id="hot-drinks" class="menu-section">
+    <!-- ================= القسم الأول: المشروبات الساخنة ================= -->
+    <main id="hot" class="tab-content active">
         <div class="section-header">
-            <h2 class="section-title">المشروبات الساخنة الكلاسيكية</h2>
+            <h2 class="section-title hot-title">المشروبات الساخنة الكلاسيكية</h2>
         </div>
-
         <div class="menu-container">
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-icon"><i class="fa-solid fa-mug-hot"></i></div>
-                    <div class="item-details">
-                        <h3>Espresso</h3>
-                        <span>إسبريسو</span>
-                    </div>
-                </div>
-                <div class="item-price">2.00 JD</div>
-            </div>
-
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-icon"><i class="fa-solid fa-mug-hot"></i></div>
-                    <div class="item-details">
-                        <h3>Americano</h3>
-                        <span>أمريكانو</span>
-                    </div>
-                </div>
-                <div class="item-price">2.00 JD</div>
-            </div>
-
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-icon"><i class="fa-solid fa-mug-hot"></i></div>
-                    <div class="item-details">
-                        <h3>Red Eye</h3>
-                        <span>ريد آي</span>
-                    </div>
-                </div>
-                <div class="item-price">2.50 JD</div>
-            </div>
-
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-icon"><i class="fa-solid fa-mug-hot"></i></div>
-                    <div class="item-details">
-                        <h3>Cortado</h3>
-                        <span>كورتادو</span>
-                    </div>
-                </div>
-                <div class="item-price">2.50 JD</div>
-            </div>
-
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-icon"><i class="fa-solid fa-mug-hot"></i></div>
-                    <div class="item-details">
-                        <h3>Cappuccino</h3>
-                        <span>كابوتشينو</span>
-                    </div>
-                </div>
-                <div class="item-price">3.00 JD</div>
-            </div>
-
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-icon"><i class="fa-solid fa-mug-saucer"></i></div>
-                    <div class="item-details">
-                        <h3>White Mocha</h3>
-                        <span>وايت موكا</span>
-                    </div>
-                </div>
-                <div class="item-price">3.25 JD</div>
-            </div>
-
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-icon"><i class="fa-solid fa-mug-saucer"></i></div>
-                    <div class="item-details">
-                        <h3>Caramel Macchiato</h3>
-                        <span>كاراميل ماكياتو</span>
-                    </div>
-                </div>
-                <div class="item-price">3.50 JD</div>
-            </div>
-
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-icon"><i class="fa-solid fa-mug-hot"></i></div>
-                    <div class="item-details">
-                        <h3>Spanish Latte</h3>
-                        <span>سبانيش لاتيه</span>
-                    </div>
-                </div>
-                <div class="item-price">3.50 JD</div>
-            </div>
-
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-icon"><i class="fa-solid fa-mug-saucer"></i></div>
-                    <div class="item-details">
-                        <h3>Hot Chocolate</h3>
-                        <span>هوت شوكليت</span>
-                    </div>
-                </div>
-                <div class="item-price">3.25 JD</div>
-            </div>
-
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-icon"><i class="fa-solid fa-leaf"></i></div>
-                    <div class="item-details">
-                        <h3>Tea</h3>
-                        <span>شاي</span>
-                    </div>
-                </div>
-                <div class="item-price">2.00 JD</div>
-            </div>
-
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-icon"><i class="fa-solid fa-mug-hot"></i></div>
-                    <div class="item-details">
-                        <h3>Espresso Macchiato</h3>
-                        <span>إسبريسو ماكياتو</span>
-                    </div>
-                </div>
-                <div class="item-price">2.50 JD</div>
-            </div>
-
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-icon"><i class="fa-solid fa-mug-saucer"></i></div>
-                    <div class="item-details">
-                        <h3>Dark Mocha</h3>
-                        <span>دارك موكا</span>
-                    </div>
-                </div>
-                <div class="item-price">3.25 JD</div>
-            </div>
-
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-icon"><i class="fa-solid fa-leaf"></i></div>
-                    <div class="item-details">
-                        <h3>Herbal Tea</h3>
-                        <span>شاي أعشاب</span>
-                    </div>
-                </div>
-                <div class="item-price">2.00 JD</div>
-            </div>
-
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-icon"><i class="fa-solid fa-mug-hot"></i></div>
-                    <div class="item-details">
-                        <h3>Caffe Latte</h3>
-                        <span>كافيه لاتيه</span>
-                    </div>
-                </div>
-                <div class="item-price">3.00 JD</div>
-            </div>
-
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-icon"><i class="fa-solid fa-mug-hot"></i></div>
-                    <div class="item-details">
-                        <h3>Coffee Day</h3>
-                        <span>قهوة اليوم</span>
-                    </div>
-                </div>
-                <div class="item-price">1.50 JD</div>
-            </div>
-
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-icon"><i class="fa-solid fa-mug-hot"></i></div>
-                    <div class="item-details">
-                        <h3>Turkish Coffee</h3>
-                        <span>قهوة تركية</span>
-                    </div>
-                </div>
-                <div class="item-price">2.00 JD</div>
-            </div>
-
-            <div class="menu-item">
-                <div class="item-info">
-                    <div class="item-icon"><i class="fa-solid fa-mug-saucer"></i></div>
-                    <div class="item-details">
-                        <h3>Flat White</h3>
-                        <span>فلات وايت</span>
-                    </div>
-                </div>
-                <div class="item-price">2.75 JD</div>
-            </div>
+            <div class="menu-item"><div class="item-info"><div class="item-icon hot-icon"><i class="fa-solid fa-mug-hot"></i></div><div class="item-details"><h3>Espresso</h3><span>إسبريسو</span></div></div><div class="item-price hot-price">2.00 JD</div></div>
+            <div class="menu-item"><div class="item-info"><div class="item-icon hot-icon"><i class="fa-solid fa-mug-hot"></i></div><div class="item-details"><h3>Americano</h3><span>أمريكانو</span></div></div><div class="item-price hot-price">2.00 JD</div></div>
+            <div class="menu-item"><div class="item-info"><div class="item-icon hot-icon"><i class="fa-solid fa-mug-hot"></i></div><div class="item-details"><h3>Red Eye</h3><span>ريد آي</span></div></div><div class="item-price hot-price">2.50 JD</div></div>
+            <div class="menu-item"><div class="item-info"><div class="item-icon hot-icon"><i class="fa-solid fa-mug-hot"></i></div><div class="item-details"><h3>Cortado</h3><span>كورتادو</span></div></div><div class="item-price hot-price">2.50 JD</div></div>
+            <div class="menu-item"><div class="item-info"><div class="item-icon hot-icon"><i class="fa-solid fa-mug-hot"></i></div><div class="item-details"><h3>Cappuccino</h3><span>كابوتشينو</span></div></div><div class="item-price hot-price">3.00 JD</div></div>
+            <div class="menu-item"><div class="item-info"><div class="item-icon hot-icon"><i class="fa-solid fa-mug-saucer"></i></div><div class="item-details"><h3>White Mocha</h3><span>وايت موكا</span></div></div><div class="item-price hot-price">3.25 JD</div></div>
+            <div class="menu-item"><div class="item-info"><div class="item-icon hot-icon"><i class="fa-solid fa-mug-saucer"></i></div><div class="item-details"><h3>Caramel Macchiato</h3><span>كاراميل ماكياتو</span></div></div><div class="item-price hot-price">3.50 JD</div></div>
+            <div class="menu-item"><div class="item-info"><div class="item-icon hot-icon"><i class="fa-solid fa-mug-hot"></i></div><div class="item-details"><h3>Spanish Latte</h3><span>سبانيش لاتيه</span></div></div><div class="item-price hot-price">3.50 JD</div></div>
+            <div class="menu-item"><div class="item-info"><div class="item-icon hot-icon"><i class="fa-solid fa-mug-saucer"></i></div><div class="item-details"><h3>Hot Chocolate</h3><span>هوت شوكليت</span></div></div><div class="item-price hot-price">3.25 JD</div></div>
+            <div class="menu-item"><div class="item-info"><div class="item-icon hot-icon"><i class="fa-solid fa-leaf"></i></div><div class="item-details"><h3>Tea</h3><span>شاي</span></div></div><div class="item-price hot-price">2.00 JD</div></div>
+            <div class="menu-item"><div class="item-info"><div class="item-icon hot-icon"><i class="fa-solid fa-mug-hot"></i></div><div class="item-details"><h3>Espresso Macchiato</h3><span>إسبريسو ماكياتو</span></div></div><div class="item-price hot-price">2.50 JD</div></div>
+            <div class="menu-item"><div class="item-info"><div class="item-icon hot-icon"><i class="fa-solid fa-mug-saucer"></i></div><div class="item-details"><h3>Dark Mocha</h3><span>دارك موكا</span></div></div><div class="item-price hot-price">3.25 JD</div></div>
+            <div class="menu-item"><div class="item-info"><div class="item-icon hot-icon"><i class="fa-solid fa-leaf"></i></div><div class="item-details"><h3>Herbal Tea</h3><span>شاي أعشاب</span></div></div><div class="item-price hot-price">2.00 JD</div></div>
+            <div class="menu-item"><div class="item-info"><div class="item-icon hot-icon"><i class="fa-solid fa-mug-hot"></i></div><div class="item-details"><h3>Caffe Latte</h3><span>كافيه لاتيه</span></div></div><div class="item-price hot-price">3.00 JD</div></div>
+            <div class="menu-item"><div class="item-info"><div class="item-icon hot-icon"><i class="fa-solid fa-mug-hot"></i></div><div class="item-details"><h3>Coffee Day</h3><span>قهوة اليوم</span></div></div><div class="item-price hot-price">1.50 JD</div></div>
+            <div class="menu-item"><div class="item-info"><div class="item-icon hot-icon"><i class="fa-solid fa-mug-hot"></i></div><div class="item-details"><h3>Turkish Coffee</h3><span>قهوة تركية</span></div></div><div class="item-price hot-price">2.00 JD</div></div>
+            <div class="menu-item"><div class="item-info"><div class="item-icon hot-icon"><i class="fa-solid fa-mug-saucer"></i></div><div class="item-details"><h3>Flat White</h3><span>فلات وايت</span></div></div><div class="item-price hot-price">2.75 JD</div></div>
         </div>
-    </section>
+    </main>
 
-
-    <!-- القسم الثاني: المشروبات الباردة (COLD DRINKS) -->
-    <section id="cold-drinks" class="menu-section">
+    <!-- ================= القسم الثاني: المشروبات الباردة ================= -->
+    <main id="cold" class="tab-content">
         <div class="section-header">
-            <h2 class="section-title cold">المشروبات الباردة والمنعشة</h2>
+            <h2 class="section-title cold-title">المشروبات الباردة والمنعشة</h2>
         </div>
 
-        <!-- 1. العصائر (JUICES) -->
         <div class="subcategory-title"><i class="fa-solid fa-citrus"></i> العصائر (Juices)</div>
         <div class="menu-container">
-            <div class="menu-item cold-item">
-                <div class="item-info">
-                    <div class="item-icon cold-icon"><i class="fa-solid fa-glass-water"></i></div>
-                    <div class="item-details"><h3>Orange Juice</h3><span>عصير برتقال</span></div>
-                </div>
-                <div class="item-price cold-price">2.50 JD</div>
-            </div>
-            <div class="menu-item cold-item">
-                <div class="item-info">
-                    <div class="item-icon cold-icon"><i class="fa-solid fa-glass-water"></i></div>
-                    <div class="item-details"><h3>Strawberry Juice</h3><span>عصير فراولة</span></div>
-                </div>
-                <div class="item-price cold-price">2.50 JD</div>
-            </div>
-            <div class="menu-item cold-item">
-                <div class="item-info">
-                    <div class="item-icon cold-icon"><i class="fa-solid fa-glass-water"></i></div>
-                    <div class="item-details"><h3>Pomegranate Juice</h3><span>عصير رمان</span></div>
-                </div>
-                <div class="item-price cold-price">2.50 JD</div>
-            </div>
-            <div class="menu-item cold-item">
-                <div class="item-info">
-                    <div class="item-icon cold-icon"><i class="fa-solid fa-glass-water"></i></div>
-                    <div class="item-details"><h3>Mango Juice</h3><span>عصير مانجو</span></div>
-                </div>
-                <div class="item-price cold-price">2.50 JD</div>
-            </div>
+            <div class="menu-item"><div class="item-info"><div class="item-icon cold-icon"><i class="fa-solid fa-glass-water"></i></div><div class="item-details"><h3>Orange Juice</h3><span>عصير برتقال</span></div></div><div class="item-price cold-price">2.50 JD</div></div>
+            <div class="menu-item"><div class="item-info"><div class="item-icon cold-icon"><i class="fa-solid fa-glass-water"></i></div><div class="item-details"><h3>Strawberry Juice</h3><span>عصير فراولة</span></div></div><div class="item-price cold-price">2.50 JD</div></div>
+            <div class="menu-item"><div class="item-info"><div class="item-icon cold-icon"><i class="fa-solid fa-glass-water"></i></div><div class="item-details"><h3>Pomegranate Juice</h3><span>عصير رمان</span></div></div><div class="item-price cold-price">2.50 JD</div></div>
+            <div class="menu-item"><div class="item-info"><div class="item-icon cold-icon"><i class="fa-solid fa-glass-water"></i></div><div class="item-details"><h3>Mango Juice</h3><span>عصير مانجو</span></div></div><div class="item-price cold-price">2.50 JD</div></div>
         </div>
 
-        <!-- 2. الميلك شيك (MILKSHAKES) -->
-        <div class="subcategory-title"><i class="fa-solid fa-ice-cream"></i> ميلك شيك (Milkshakes)</div>
+        <div class="subcategory-title"><i class="fa-solid fa-ice-cream"></i> الميلك شيك والسموذي</div>
         <div class="menu-container">
-            <div class="menu-item cold-item">
-                <div class="item-info">
-                    <div class="item-icon cold-icon"><i class="fa-solid fa-whiskey-glass"></i></div>
-                    <div class="item-details"><h3>Pistachio Milkshake</h3><span>ميلك شيك فستق حلبي</span></div>
-                </div>
-                <div class="item-price cold-price">4.90 JD</div>
-            </div>
-            <div class="menu-item cold-item">
-                <div class="item-info">
-                    <div class="item-icon cold-icon"><i class="fa-solid fa-whiskey-glass"></i></div>
-                    <div class="item-details"><h3>Chocolate Milkshake</h3><span>ميلك شيك شوكولاتة</span></div>
-                </div>
-                <div class="item-price cold-price">4.50 JD</div>
-            </div>
-            <div class="menu-item cold-item">
-                <div class="item-info">
-                    <div class="item-icon cold-icon"><i class="fa-solid fa-whiskey-glass"></i></div>
-                    <div class="item-details"><h3>Baklava Milkshake</h3><span>ميلك شيك بقلاوة</span></div>
-                </div>
-                <div class="item-price cold-price">4.90 JD</div>
-            </div>
-            <div class="menu-item cold-item">
-                <div class="item-info">
-                    <div class="item-icon cold-icon"><i class="fa-solid fa-whiskey-glass"></i></div>
-                    <div class="item-details"><h3>Mixed Berry Milkshake</h3><span>ميلك شيك توت مشكل</span></div>
-                </div>
-                <div class="item-price cold-price">4.50 JD</div>
-            </div>
+            <div class="menu-item"><div class="item-info"><div class="item-icon cold-icon"><i class="fa-solid fa-whiskey-glass"></i></div><div class="item-details"><h3>Pistachio Milkshake</h3><span>ميلك شيك فستق حلبي</span></div></div><div class="item-price cold-price">4.90 JD</div></div>
+            <div class="menu-item"><div class="item-info"><div class="item-icon cold-icon"><i class="fa-solid fa-whiskey-glass"></i></div><div class="item-details"><h3>Chocolate Milkshake</h3><span>ميلك شيك شوكولاتة</span></div></div><div class="item-price cold-price">4.50 JD</div></div>
+            <div class="menu-item"><div class="item-info"><div class="item-icon cold-icon"><i class="fa-solid fa-whiskey-glass"></i></div><div class="item-details"><h3>Baklava Milkshake</h3><span>ميلك شيك بقلاوة</span></div></div><div class="item-price cold-price">4.90 JD</div></div>
+            <div class="menu-item"><div class="item-info"><div class="item-icon cold-icon"><i class="fa-solid fa-wine-glass-drop"></i></div><div class="item-details"><h3>Mango Smoothie</h3><span>سموذي مانجو</span></div></div><div class="item-price cold-price">3.50 JD</div></div>
         </div>
 
-        <!-- 3. السموذي (SMOOTHIES) -->
-        <div class="subcategory-title"><i class="fa-solid fa-blender"></i> سموذي (Smoothies)</div>
+        <div class="subcategory-title"><i class="fa-solid fa-cubes-stacked"></i> القهوة المثلجة والشاي البارد</div>
         <div class="menu-container">
-            <div class="menu-item cold-item">
-                <div class="item-info">
-                    <div class="item-icon cold-icon"><i class="fa-solid fa-wine-glass-drop"></i></div>
-                    <div class="item-details"><h3>Mango Smoothie</h3><span>سموذي مانجو</span></div>
-                </div>
-                <div class="item-price cold-price">3.50 JD</div>
-            </div>
-            <div class="menu-item cold-item">
-                <div class="item-info">
-                    <div class="item-icon cold-icon"><i class="fa-solid fa-wine-glass-drop"></i></div>
-                    <div class="item-details"><h3>Mango Passion Smoothie</h3><span>سموذي مانجو وباDirectory</span></div>
-                </div>
-                <div class="item-price cold-price">3.50 JD</div>
-            </div>
-            <div class="menu-item cold-item">
-                <div class="item-info">
-                    <div class="item-icon cold-icon"><i class="fa-solid fa-wine-glass-drop"></i></div>
-                    <div class="item-details"><h3>Peach & Raspberry</h3><span>سموذي خوح وعلّيق</span></div>
-                </div>
-                <div class="item-price cold-price">3.50 JD</div>
-            </div>
-            <div class="menu-item cold-item">
-                <div class="item-info">
-                    <div class="item-icon cold-icon"><i class="fa-solid fa-wine-glass-drop"></i></div>
-                    <div class="item-details"><h3>Mixed Berry Smoothie</h3><span>سموذي توت مشكل</span></div>
-                </div>
-                <div class="item-price cold-price">3.50 JD</div>
-            </div>
+            <div class="menu-item"><div class="item-info"><div class="item-icon cold-icon"><i class="fa-solid fa-cubes"></i></div><div class="item-details"><h3>Iced Mocha</h3><span>آيس موكا</span></div></div><div class="item-price cold-price">3.25 JD</div></div>
+            <div class="menu-item"><div class="item-info"><div class="item-icon cold-icon"><i class="fa-solid fa-cubes"></i></div><div class="item-details"><h3>Iced Latte</h3><span>آيس لاتيه</span></div></div><div class="item-price cold-price">3.00 JD</div></div>
+            <div class="menu-item"><div class="item-info"><div class="item-icon cold-icon"><i class="fa-solid fa-cubes"></i></div><div class="item-details"><h3>Iced Spanish Latte</h3><span>آيس سبانيش لاتيه</span></div></div><div class="item-price cold-price">3.50 JD</div></div>
+            <div class="menu-item"><div class="item-info"><div class="item-icon cold-icon"><i class="fa-solid fa-leaf"></i></div><div class="item-details"><h3>Peach Iced Tea</h3><span>آيس تي خوخ</span></div></div><div class="item-price cold-price">2.50 JD</div></div>
+        </div>
+    </main>
+
+    <!-- ================= القسم الثالث: الحلويات (DESSERTS) ================= -->
+    <main id="desserts" class="tab-content">
+        <div class="section-header">
+            <h2 class="section-title dessert-title">قسم الحلويات الشهية</h2>
         </div>
 
-        <!-- 4. القهوة الباردة (ICED COFFEES) -->
-        <div class="subcategory-title"><i class="fa-solid fa-cubes-stacked"></i> القهوة المثلجة (Iced Coffees)</div>
         <div class="menu-container">
-            <div class="menu-item cold-item">
+            <!-- 1 -->
+            <div class="menu-item">
                 <div class="item-info">
-                    <div class="item-icon cold-icon"><i class="fa-solid fa-cubes"></i></div>
-                    <div class="item-details"><h3>Iced Mocha</h3><span>آيس موكا</span></div>
+                    <div class="item-icon dessert-icon"><i class="fa-solid fa-stroopwafel"></i></div>
+                    <div class="item-details"><h3>Waffle</h3><span>وافل</span></div>
                 </div>
-                <div class="item-price cold-price">3.25 JD</div>
+                <div class="item-price dessert-price">3.50 JD</div>
             </div>
-            <div class="menu-item cold-item">
-                <div class="item-info">
-                    <div class="item-icon cold-icon"><i class="fa-solid fa-cubes"></i></div>
-                    <div class="item-details"><h3>Iced Latte</h3><span>آيس لاتيه</span></div>
-                </div>
-                <div class="item-price cold-price">3.00 JD</div>
-            </div>
-            <div class="menu-item cold-item">
-                <div class="item-info">
-                    <div class="item-icon cold-icon"><i class="fa-solid fa-cubes"></i></div>
-                    <div class="item-details"><h3>Iced Americano</h3><span>آيس أمريكانو</span></div>
-                </div>
-                <div class="item-price cold-price">2.00 JD</div>
-            </div>
-            <div class="menu-item cold-item">
-                <div class="item-info">
-                    <div class="item-icon cold-icon"><i class="fa-solid fa-cubes"></i></div>
-                    <div class="item-details"><h3>Iced Caramel Macchiato</h3><span>آيس كاراميل ماكياتو</span></div>
-                </div>
-                <div class="item-price cold-price">3.50 JD</div>
-            </div>
-            <div class="menu-item cold-item">
-                <div class="item-info">
-                    <div class="item-icon cold-icon"><i class="fa-solid fa-cubes"></i></div>
-                    <div class="item-details"><h3>Iced White Mocha</h3><span>آيس وايت موكا</span></div>
-                </div>
-                <div class="item-price cold-price">3.25 JD</div>
-            </div>
-            <div class="menu-item cold-item">
-                <div class="item-info">
-                    <div class="item-icon cold-icon"><i class="fa-solid fa-cubes"></i></div>
-                    <div class="item-details"><h3>Iced Spanish Latte</h3><span>آيس سبانيش لاتيه</span></div>
-                </div>
-                <div class="item-price cold-price">3.50 JD</div>
-            </div>
-        </div>
 
-        <!-- 5. المشروبات المنعشة والفرابوتشينو (REFRESHING & FRAPPUCCINO) -->
-        <div class="subcategory-title"><i class="fa-solid fa-bolt"></i> المشروبات المنعشة والفرابوتشينو</div>
-        <div class="menu-container">
-            <div class="menu-item cold-item">
+            <!-- 2 -->
+            <div class="menu-item">
                 <div class="item-info">
-                    <div class="item-icon cold-icon"><i class="fa-solid fa-water"></i></div>
-                    <div class="item-details"><h3>Mixed Berry Refreshing</h3><span>مشروب التوت المنعش</span></div>
+                    <div class="item-icon dessert-icon"><i class="fa-solid fa-cookie"></i></div>
+                    <div class="item-details"><h3>Roll</h3><span>رول حلويات</span></div>
                 </div>
-                <div class="item-price cold-price">3.25 JD</div>
+                <div class="item-price dessert-price">3.00 JD</div>
             </div>
-            <div class="menu-item cold-item">
-                <div class="item-info">
-                    <div class="item-icon cold-icon"><i class="fa-solid fa-water"></i></div>
-                    <div class="item-details"><h3>Blue Ocean Refreshing</h3><span>بلو أوشن المنعش</span></div>
-                </div>
-                <div class="item-price cold-price">3.25 JD</div>
-            </div>
-            <div class="menu-item cold-item">
-                <div class="item-info">
-                    <div class="item-icon cold-icon"><i class="fa-solid fa-stroopwafel"></i></div>
-                    <div class="item-details"><h3>Coffee Buzz Frappuccino</h3><span>فرابوتشينو كوفي باز</span></div>
-                </div>
-                <div class="item-price cold-price">3.75 JD</div>
-            </div>
-        </div>
 
-        <!-- 6. الشاي المثلج (ICED TEAS) -->
-        <div class="subcategory-title"><i class="fa-solid fa-glass-water"></i> الشاي المثلج (Iced Teas)</div>
-        <div class="menu-container">
-            <div class="menu-item cold-item">
+            <!-- 3 -->
+            <div class="menu-item">
                 <div class="item-info">
-                    <div class="item-icon cold-icon"><i class="fa-solid fa-leaf"></i></div>
-                    <div class="item-details"><h3>Peach Iced Tea</h3><span>آيس تي خوخ</span></div>
+                    <div class="item-icon dessert-icon"><i class="fa-solid fa-cake-candles"></i></div>
+                    <div class="item-details"><h3>Brownie</h3><span>براوني</span></div>
                 </div>
-                <div class="item-price cold-price">2.50 JD</div>
+                <div class="item-price dessert-price">3.00 JD</div>
             </div>
-            <div class="menu-item cold-item">
+
+            <!-- 4 -->
+            <div class="menu-item">
                 <div class="item-info">
-                    <div class="item-icon cold-icon"><i class="fa-solid fa-leaf"></i></div>
-                    <div class="item-details"><h3>Orange Iced Tea</h3><span>آيس تي برتقال</span></div>
+                    <div class="item-icon dessert-icon"><i class="fa-solid fa-scroll"></i></div>
+                    <div class="item-details"><h3>Crepe</h3><span>كريب</span></div>
                 </div>
-                <div class="item-price cold-price">2.50 JD</div>
+                <div class="item-price dessert-price">3.50 JD</div>
             </div>
-            <div class="menu-item cold-item">
+
+            <!-- 5 -->
+            <div class="menu-item">
                 <div class="item-info">
-                    <div class="item-icon cold-icon"><i class="fa-solid fa-leaf"></i></div>
-                    <div class="item-details"><h3>Lemon Raspberry Iced Tea</h3><span>آيس تي ليمون وعليق</span></div>
+                    <div class="item-icon dessert-icon"><i class="fa-solid fa-cookie-bite"></i></div>
+                    <div class="item-details"><h3>Cookies</h3><span>كوكيز</span></div>
                 </div>
-                <div class="item-price cold-price">2.50 JD</div>
+                <div class="item-price dessert-price">2.50 JD</div>
             </div>
-            <div class="menu-item cold-item">
+
+            <!-- 6 -->
+            <div class="menu-item">
                 <div class="item-info">
-                    <div class="item-icon cold-icon"><i class="fa-solid fa-leaf"></i></div>
-                    <div class="item-details"><h3>Passion Fruit Iced Tea</h3><span>آيس تي باشن فروت</span></div>
+                    <div class="item-icon dessert-icon"><i class="fa-solid fa-utensils"></i></div>
+                    <div class="item-details"><h3>Rowad Dip</h3><span>غموس الرواد</span></div>
                 </div>
-                <div class="item-price cold-price">2.50 JD</div>
+                <div class="item-price dessert-price">3.75 JD</div>
+            </div>
+
+            <!-- 7 -->
+            <div class="menu-item">
+                <div class="item-info">
+                    <div class="item-icon dessert-icon"><i class="fa-solid fa-bread-slice"></i></div>
+                    <div class="item-details"><h3>Chimney Cake</h3><span>شمني كيك</span></div>
+                </div>
+                <div class="item-price dessert-price">3.50 JD</div>
+            </div>
+
+            <!-- 8 -->
+            <div class="menu-item">
+                <div class="item-info">
+                    <div class="item-icon dessert-icon"><i class="fa-solid fa-cake-slice"></i></div>
+                    <div class="item-details"><h3>Cake Slice</h3><span>شريحة كيك</span></div>
+                </div>
+                <div class="item-price dessert-price">2.50 JD</div>
+            </div>
+
+            <!-- 9 -->
+            <div class="menu-item">
+                <div class="item-info">
+                    <div class="item-icon dessert-icon"><i class="fa-solid fa-bowl-food"></i></div>
+                    <div class="item-details"><h3>Ice Cream Chips</h3><span>رقائق الآيسكريم</span></div>
+                </div>
+                <div class="item-price dessert-price">3.50 JD</div>
+            </div>
+
+            <!-- خيار إضافة الآيسكريم -->
+            <div class="addon-card">
+                <h4><i class="fa-solid fa-ice-cream"></i> Add Ice Cream (+1.00 JD)</h4>
+                <p>تقدم الحلويات بدون آيسكريم، يمكنك إضافة النكهة التي تفضلها!</p>
             </div>
         </div>
-    </section>
+    </main>
 
     <footer>
         <p>© الرواد آيسكريم وكافيه (AL ROWAD) - جميع الحقوق محفوظة</p>
     </footer>
 
+    <!-- جافاسكريبت للتحكم بالتبديل السلس والأخلفيات -->
+    <script>
+        function switchTab(tabId, bgClass) {
+            // 1. إخفاء جميع الصفحات
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            // 2. إزالة الحالة النشطة من أزرار التنقل
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // 3. تفعيل الصفحة المحددة والزر المحدد
+            document.getElementById(tabId).classList.add('active');
+            document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+
+            // 4. تغيير خلفية الصفحة بالكامل
+            document.body.className = bgClass;
+        }
+    </script>
 </body>
 </html>
