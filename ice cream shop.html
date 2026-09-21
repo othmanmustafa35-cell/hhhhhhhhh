@@ -1,415 +1,436 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الرواد - المشروبات الساخنة</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <title>قائمة المشروبات الساخنة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-color: #fceecb;
-            --card-bg: #ffffff;
-            --text-dark: #3a4a58;
-            --text-muted: #7d8b96;
-            --accent-blue: #6b8ea7;
-            --accent-light: #e3ebf0;
-            --shadow: 0 8px 20px rgba(0,0,0,0.06);
-            --radius: 18px;
-        }
-
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Tajawal', sans-serif;
-            -webkit-tap-highlight-color: transparent;
+            font-family: 'Cairo', sans-serif;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-dark);
+            background-color: #f8f5f0;
+            color: #333;
+            line-height: 1.6;
             padding-bottom: 40px;
-            min-height: 100vh;
         }
 
         header {
-            background: linear-gradient(135deg, #f7e3b5 0%, #fceecb 100%);
-            padding: 25px 20px 15px;
+            background-color: #3c2a21;
+            color: #fff;
             text-align: center;
-            border-bottom-left-radius: 30px;
-            border-bottom-right-radius: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            padding: 2rem 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        .brand-logo {
-            width: 75px;
-            height: 75px;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-            font-size: 35px;
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: #e5ba73;
         }
 
-        h1 {
-            color: var(--accent-blue);
-            font-size: 1.6rem;
-            font-weight: 800;
-            margin-bottom: 4px;
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 15px;
         }
 
-        p.subtitle {
-            color: var(--text-muted);
-            font-size: 0.88rem;
-            margin-bottom: 12px;
+        .search-container {
+            margin-bottom: 25px;
+            text-align: center;
         }
 
-        .item-count-badge {
-            background: var(--accent-blue);
-            color: white;
-            font-size: 0.8rem;
-            padding: 4px 14px;
-            border-radius: 15px;
-            display: inline-block;
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-
-        .search-box {
-            position: relative;
-            max-width: 450px;
-            margin: 0 auto;
-        }
-
-        .search-box input {
+        .search-input {
             width: 100%;
-            padding: 12px 40px 12px 15px;
-            border: 2px solid #ecd8ab;
+            max-width: 500px;
+            padding: 12px 20px;
+            font-size: 1rem;
+            border: 2px solid #1a120b;
             border-radius: 25px;
-            background: white;
-            font-size: 0.95rem;
             outline: none;
             transition: all 0.3s ease;
         }
 
-        .search-box input:focus {
-            border-color: var(--accent-blue);
-            box-shadow: 0 0 10px rgba(107, 142, 167, 0.2);
-        }
-
-        .search-icon {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--accent-blue);
-            font-size: 1.1rem;
-        }
-
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px 15px;
+        .search-input:focus {
+            border-color: #e5ba73;
+            box-shadow: 0 0 8px rgba(229, 186, 115, 0.5);
         }
 
         .section-title {
-            color: var(--accent-blue);
-            font-size: 1.3rem;
-            font-weight: 800;
-            text-align: center;
-            margin: 10px 0 20px;
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .section-title::before, .section-title::after {
-            content: '';
-            flex: 1;
-            height: 2px;
-            background: rgba(107, 142, 167, 0.25);
+            font-size: 1.5rem;
+            color: #3c2a21;
+            margin: 30px 0 15px;
+            border-bottom: 2px solid #e5ba73;
+            padding-bottom: 5px;
+            display: inline-block;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-        }
-
-        @media (max-width: 420px) {
-            .grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
         }
 
         .card {
-            background: var(--card-bg);
-            border-radius: var(--radius);
-            padding: 12px 8px;
-            text-align: center;
-            box-shadow: var(--shadow);
-            transition: transform 0.2s ease;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .card:active {
-            transform: scale(0.97);
-        }
-
-        .card-img-wrap {
-            width: 100%;
-            height: 95px;
+            background: #fff;
             border-radius: 12px;
             overflow: hidden;
-            margin-bottom: 8px;
-            background: #f9f9f9;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
         }
 
-        .card-img-wrap img {
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .card img {
             width: 100%;
-            height: 100%;
+            height: 180px;
             object-fit: cover;
+            background-color: #e0e0e0;
+        }
+
+        .card-body {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
         }
 
         .card-title {
-            font-size: 0.85rem;
+            font-size: 1.2rem;
             font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 6px;
-            line-height: 1.2;
-            height: 2.4em;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            color: #3c2a21;
+            margin-bottom: 5px;
         }
 
-        .price-badge {
-            background: var(--accent-light);
-            color: var(--accent-blue);
-            font-weight: 800;
-            font-size: 0.8rem;
-            padding: 4px 10px;
-            border-radius: 12px;
-            display: inline-block;
+        .card-desc {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 12px;
         }
 
-        .banner-card {
-            background: white;
-            border-radius: var(--radius);
-            padding: 16px 20px;
-            margin-top: 25px;
-            box-shadow: var(--shadow);
-            border: 2px dashed var(--accent-blue);
+        .card-price {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #b55d28;
+            text-align: left;
         }
 
-        .banner-header {
+        .addons-grid {
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        }
+
+        .addon-card {
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            border-right: 4px solid #e5ba73;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 6px;
         }
 
-        .banner-title {
-            color: var(--accent-blue);
-            font-weight: 800;
-            font-size: 1.05rem;
+        .addon-title {
+            font-weight: 600;
+            color: #3c2a21;
         }
 
-        .banner-price {
-            background: var(--accent-blue);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 10px;
-            font-weight: 800;
-            font-size: 0.85rem;
+        .addon-price {
+            font-weight: 700;
+            color: #b55d28;
         }
 
-        .banner-desc {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            line-height: 1.4;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.6);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            backdrop-filter: blur(4px);
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: white;
-            border-radius: 25px;
-            padding: 20px;
-            max-width: 380px;
-            width: 100%;
+        .no-results {
             text-align: center;
-            position: relative;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background: #eee;
-            border: none;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .modal-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 18px;
-            margin-bottom: 15px;
-        }
-
-        .modal-title {
-            font-size: 1.2rem;
-            font-weight: 800;
-            color: var(--text-dark);
-            margin-bottom: 8px;
-        }
-
-        .modal-price {
+            grid-column: 1 / -1;
             font-size: 1.1rem;
-            font-weight: 800;
-            color: var(--accent-blue);
-        }
-
-        footer {
-            text-align: center;
+            color: #777;
+            display: none;
             padding: 20px;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            margin-top: 20px;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="brand-logo">☕</div>
-        <h1>الرواد - المشروبات الساخنة</h1>
-        <p class="subtitle">Coffee Classics & Hot Drinks</p>
-        <div class="item-count-badge">المشروبات الساخنة: 17 صنفاً</div>
-
-        <div class="search-box">
-            <span class="search-icon">🔍</span>
-            <input type="text" id="searchInput" placeholder="ابحث عن مشروب ساخن..." onkeyup="searchMenu()">
-        </div>
+        <h1>قائمة المشروبات الساخنة</h1>
+        <p>استمتع بأجود أنواع القهوة والمشروبات الساخنة</p>
     </header>
 
     <div class="container">
-        <div class="section-title">COFFEE CLASSICS</div>
-        <div class="grid" id="gridContainer">
-            <!-- Items rendered by JS -->
+        <!-- شريط البحث -->
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="أبحث عن مشروبك المفضل..." onkeyup="filterMenu()">
         </div>
 
-        <div class="banner-card">
-            <div class="banner-header">
-                <div class="banner-title">Add-Ons (الإضافات) ☕</div>
-                <div class="banner-price">0.75 JD</div>
+        <!-- قسم المشروبات الساخنة (17 صنف) -->
+        <h2 class="section-title">المشروبات الساخنة</h2>
+        <div class="grid" id="menuGrid">
+
+            <!-- 1. القهوة التركية -->
+            <div class="card item">
+                <img src="https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&w=600&q=80" 
+                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80';" 
+                     alt="القهوة التركية">
+                <div class="card-body">
+                    <div class="card-title">القهوة التركية</div>
+                    <div class="card-desc">قهوة غنية ومحضرة على الأصول بطعم أصيل.</div>
+                    <div class="card-price">2.00 د.أ</div>
+                </div>
             </div>
-            <div class="banner-desc">Extra Shot, Extra Milk, Alternative Milk, Flavor, Honey, Whipped Cream</div>
+
+            <!-- 2. إسبريسو -->
+            <div class="card item">
+                <img src="https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?auto=format&fit=crop&w=600&q=80" 
+                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80';" 
+                     alt="إسبريسو">
+                <div class="card-body">
+                    <div class="card-title">إسبريسو</div>
+                    <div class="card-desc">جرعة مركزة من القهوة الغنية بالنكهة.</div>
+                    <div class="card-price">1.50 د.أ</div>
+                </div>
+            </div>
+
+            <!-- 3. أمريكانو -->
+            <div class="card item">
+                <img src="https://images.unsplash.com/photo-1551033406-611cf9a28f67?auto=format&fit=crop&w=600&q=80" 
+                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80';" 
+                     alt="أمريكانو">
+                <div class="card-body">
+                    <div class="card-title">أمريكانو</div>
+                    <div class="card-desc">إسبريسو مخفف بالماء الساخن لمذاق متوازن.</div>
+                    <div class="card-price">2.00 د.أ</div>
+                </div>
+            </div>
+
+            <!-- 4. كابوتشينو -->
+            <div class="card item">
+                <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=600&q=80" 
+                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80';" 
+                     alt="كابوتشينو">
+                <div class="card-body">
+                    <div class="card-title">كابوتشينو</div>
+                    <div class="card-desc">مزيج متناغم من الإسبريسو والحليب ورغوة الحليب الغنية.</div>
+                    <div class="card-price">2.50 د.أ</div>
+                </div>
+            </div>
+
+            <!-- 5. لاتيه -->
+            <div class="card item">
+                <img src="https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=600&q=80" 
+                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80';" 
+                     alt="لاتيه">
+                <div class="card-body">
+                    <div class="card-title">لاتيه</div>
+                    <div class="card-desc">إسبريسو سلس مع كمية سخية من الحليب المبخر.</div>
+                    <div class="card-price">2.50 د.أ</div>
+                </div>
+            </div>
+
+            <!-- 6. سبانيش لاتيه -->
+            <div class="card item">
+                <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=600&q=80" 
+                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80';" 
+                     alt="سبانيش لاتيه">
+                <div class="card-body">
+                    <div class="card-title">سبانيش لاتيه</div>
+                    <div class="card-desc">لاتيه مميز مع لمسة من الحليب المكثف المحلى.</div>
+                    <div class="card-price">3.00 د.أ</div>
+                </div>
+            </div>
+
+            <!-- 7. فلات وايت -->
+            <div class="card item">
+                <img src="https://images.unsplash.com/photo-1577968897966-3d4325b36b61?auto=format&fit=crop&w=600&q=80" 
+                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80';" 
+                     alt="فلات وايت">
+                <div class="card-body">
+                    <div class="card-title">فلات وايت</div>
+                    <div class="card-desc">إسبريسو مزدوج مع طبقة رقيقة ناعمة من الحليب.</div>
+                    <div class="card-price">2.50 د.أ</div>
+                </div>
+            </div>
+
+            <!-- 8. موكا ساخنة -->
+            <div class="card item">
+                <img src="https://images.unsplash.com/photo-1607260550778-ea9d295b3f5d?auto=format&fit=crop&w=600&q=80" 
+                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80';" 
+                     alt="موكا ساخنة">
+                <div class="card-body">
+                    <div class="card-title">موكا ساخنة</div>
+                    <div class="card-desc">مزج رائع بين الإسبريسو والشوكولاتة والحليب.</div>
+                    <div class="card-price">2.75 د.أ</div>
+                </div>
+            </div>
+
+            <!-- 9. شوكولاتة ساخنة -->
+            <div class="card item">
+                <img src="https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?auto=format&fit=crop&w=600&q=80" 
+                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80';" 
+                     alt="شوكولاتة ساخنة">
+                <div class="card-body">
+                    <div class="card-title">شوكولاتة ساخنة</div>
+                    <div class="card-desc">شراب الشوكولاتة الغني بالحليب الدافئ.</div>
+                    <div class="card-price">2.50 د.أ</div>
+                </div>
+            </div>
+
+            <!-- 10. شاي بالنعناع -->
+            <div class="card item">
+                <img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=600&q=80" 
+                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80';" 
+                     alt="شاي بالنعناع">
+                <div class="card-body">
+                    <div class="card-title">شاي بالنعناع</div>
+                    <div class="card-desc">شاي أوراق طبيعي مع أوراق النعناع الطازجة.</div>
+                    <div class="card-price">1.00 د.أ</div>
+                </div>
+            </div>
+
+            <!-- 11. شاي كرك -->
+            <div class="card item">
+                <img src="https://images.unsplash.com/photo-1561336313-0bd5e0b27ec8?auto=format&fit=crop&w=600&q=80" 
+                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80';" 
+                     alt="شاي كرك">
+                <div class="card-body">
+                    <div class="card-title">شاي كرك</div>
+                    <div class="card-desc">شاي مغلي مع الحليب والهيل والبهارات العطرية.</div>
+                    <div class="card-price">1.50 د.أ</div>
+                </div>
+            </div>
+
+            <!-- 12. شاي أخضر -->
+            <div class="card item">
+                <img src="https://images.unsplash.com/photo-1627435601361-ec25f5b1d0e5?auto=format&fit=crop&w=600&q=80" 
+                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80';" 
+                     alt="شاي أخضر">
+                <div class="card-body">
+                    <div class="card-title">شاي أخضر</div>
+                    <div class="card-desc">شاي أخضر منقي ومفيد ومريح للأعصاب.</div>
+                    <div class="card-price">1.00 د.أ</div>
+                </div>
+            </div>
+
+            <!-- 13. سحلب -->
+            <div class="card item">
+                <img src="https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=600&q=80" 
+                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80';" 
+                     alt="سحلب">
+                <div class="card-body">
+                    <div class="card-title">سحلب</div>
+                    <div class="card-desc">مشروب السحلب الدافئ المزين بالمكسرات والقرفة.</div>
+                    <div class="card-price">2.00 د.أ</div>
+                </div>
+            </div>
+
+            <!-- 14. قهوة فرنسية -->
+            <div class="card item">
+                <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=600&q=80" 
+                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80';" 
+                     alt="قهوة فرنسية">
+                <div class="card-body">
+                    <div class="card-title">قهوة فرنسية</div>
+                    <div class="card-desc">قهوة بفرنسا مع البندق والحليب الدافئ.</div>
+                    <div class="card-price">2.25 د.أ</div>
+                </div>
+            </div>
+
+            <!-- 15. قهوة عربية -->
+            <div class="card item">
+                <img src="https://images.unsplash.com/photo-1568649929103-28ffbefaca1e?auto=format&fit=crop&w=600&q=80" 
+                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80';" 
+                     alt="قهوة عربية">
+                <div class="card-body">
+                    <div class="card-title">قهوة عربية</div>
+                    <div class="card-desc">قهوة محروقة بالهيل والزعفران على الطريقة الأصيلة.</div>
+                    <div class="card-price">2.00 د.أ</div>
+                </div>
+            </div>
+
+            <!-- 16. كورتادو -->
+            <div class="card item">
+                <img src="https://images.unsplash.com/photo-1585494156145-1c60a4fe952b?auto=format&fit=crop&w=600&q=80" 
+                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80';" 
+                     alt="كورتادو">
+                <div class="card-body">
+                    <div class="card-title">كورتادو</div>
+                    <div class="card-desc">نسب متساوية من الإسبريسو والحليب المبخر.</div>
+                    <div class="card-price">2.25 د.أ</div>
+                </div>
+            </div>
+
+            <!-- 17. أوريو ساخن -->
+            <div class="card item">
+                <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=600&q=80" 
+                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80';" 
+                     alt="أوريو ساخن">
+                <div class="card-body">
+                    <div class="card-title">أوريو ساخن</div>
+                    <div class="card-desc">مشروب الأوريو الدافئ مع الحليب وقطع البسكويت.</div>
+                    <div class="card-price">2.75 د.أ</div>
+                </div>
+            </div>
+
+            <p class="no-results" id="noResults">لم يتم العثور على مشروب بهذا الاسم.</p>
+        </div>
+
+        <!-- قسم الإضافات -->
+        <h2 class="section-title">الإضافات (Add-Ons)</h2>
+        <div class="grid addons-grid">
+            <div class="addon-card">
+                <span class="addon-title">شوت إسبريسو إضافي</span>
+                <span class="addon-price">0.75 د.أ</span>
+            </div>
+            <div class="addon-card">
+                <span class="addon-title">حليب إضافي (شوفان/لوز/عادي)</span>
+                <span class="addon-price">0.50 د.أ</span>
+            </div>
+            <div class="addon-card">
+                <span class="addon-title">سيروب نكهات (فانيليا/كراميل/بندق)</span>
+                <span class="addon-price">0.50 د.أ</span>
+            </div>
+            <div class="addon-card">
+                <span class="addon-title">كريمة مخفوقة</span>
+                <span class="addon-price">0.50 د.أ</span>
+            </div>
         </div>
     </div>
-
-    <div class="modal" id="itemModal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal()">✕</button>
-            <img src="" id="modalImg" class="modal-img" alt="">
-            <div id="modalTitle" class="modal-title"></div>
-            <div id="modalPrice" class="modal-price"></div>
-        </div>
-    </div>
-
-    <footer>
-        <p>© الرواد آيس كريم وكافيه - جميع الحقوق محفوظة</p>
-    </footer>
 
     <script>
-        const hotDrinks = [
-            { id: 1, title: 'Espresso', price: '2.00 JD', img: 'https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=400&auto=format&fit=crop' },
-            { id: 2, title: 'Americano', price: '2.00 JD', img: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400&auto=format&fit=crop' },
-            { id: 3, title: 'Red Eye', price: '2.50 JD', img: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400&auto=format&fit=crop' },
-            { id: 4, title: 'Cortado', price: '2.50 JD', img: 'https://images.unsplash.com/photo-1534778101976-62847782c213?w=400&auto=format&fit=crop' },
-            { id: 5, title: 'Cappuccino', price: '3.00 JD', img: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400&auto=format&fit=crop' },
-            { id: 6, title: 'White Mocha', price: '3.25 JD', img: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?w=400&auto=format&fit=crop' },
-            { id: 7, title: 'Caramel Macchiato', price: '3.50 JD', img: 'https://images.unsplash.com/photo-1485808191679-5f86510681a2?w=400&auto=format&fit=crop' },
-            { id: 8, title: 'Spanish Latte', price: '3.50 JD', img: 'https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=400&auto=format&fit=crop' },
-            { id: 9, title: 'Hot Chocolate', price: '3.25 JD', img: 'https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=400&auto=format&fit=crop' },
-            { id: 10, title: 'Tea', price: '2.00 JD', img: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=400&auto=format&fit=crop' },
-            { id: 11, title: 'Espresso Macchiato', price: '2.50 JD', img: 'https://images.unsplash.com/photo-1485808191679-5f86510681a2?w=400&auto=format&fit=crop' },
-            { id: 12, title: 'Dark Mocha', price: '3.25 JD', img: 'https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?w=400&auto=format&fit=crop' },
-            { id: 13, title: 'Herbal Tea', price: '2.00 JD', img: 'https://images.unsplash.com/photo-1597481499750-3e6b22637e12?w=400&auto=format&fit=crop' },
-            { id: 14, title: 'Caffe Latte', price: '3.00 JD', img: 'https://images.unsplash.com/photo-1534778101976-62847782c213?w=400&auto=format&fit=crop' },
-            { id: 15, title: 'Coffee Day', price: '1.50 JD', img: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&auto=format&fit=crop' },
-            { id: 16, title: 'Turkish Coffee', price: '2.00 JD', img: 'https://images.unsplash.com/photo-1588612165039-3f0f74519969?w=400&auto=format&fit=crop' },
-            { id: 17, title: 'Flat White', price: '2.75 JD', img: 'https://images.unsplash.com/photo-1577968897966-3d4325b36b61?w=400&auto=format&fit=crop' }
-        ];
+        function filterMenu() {
+            const input = document.getElementById('searchInput').value.toLowerCase().trim();
+            const items = document.querySelectorAll('#menuGrid .item');
+            let hasVisibleItem = false;
 
-        function renderItems(items) {
-            const container = document.getElementById('gridContainer');
-            container.innerHTML = '';
             items.forEach(item => {
-                const card = document.createElement('div');
-                card.className = 'card';
-                card.onclick = () => openModal(item.title, item.price, item.img);
-                card.innerHTML = `
-                    <div class="card-img-wrap">
-                        <img src="${item.img}" alt="${item.title}">
-                    </div>
-                    <div class="card-title">${item.title}</div>
-                    <div class="price-badge">${item.price}</div>
-                `;
-                container.appendChild(card);
+                const title = item.querySelector('.card-title').textContent.toLowerCase();
+                const desc = item.querySelector('.card-desc').textContent.toLowerCase();
+                if (title.includes(input) || desc.includes(input)) {
+                    item.style.display = "flex";
+                    hasVisibleItem = true;
+                } else {
+                    item.style.display = "none";
+                }
             });
-        }
 
-        function searchMenu() {
-            const q = document.getElementById('searchInput').value.toLowerCase();
-            const filtered = hotDrinks.filter(i => i.title.toLowerCase().includes(q));
-            renderItems(filtered);
+            const noResults = document.getElementById('noResults');
+            if (hasVisibleItem) {
+                noResults.style.display = "none";
+            } else {
+                noResults.style.display = "block";
+            }
         }
-
-        function openModal(title, price, img) {
-            document.getElementById('modalTitle').innerText = title;
-            document.getElementById('modalPrice').innerText = price;
-            document.getElementById('modalImg').src = img;
-            document.getElementById('itemModal').classList.add('active');
-        }
-
-        function closeModal() {
-            document.getElementById('itemModal').classList.remove('active');
-        }
-
-        renderItems(hotDrinks);
     </script>
 </body>
 </html>
